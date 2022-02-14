@@ -1,0 +1,41 @@
+.register-body {
+    display: flex;
+    flex-direction: column;
+    width: 650px;
+    margin: 0 auto 0 auto;
+}
+
+.register-title {
+    margin: 30px auto 10px auto;
+    color: rgb(72, 92, 92);
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: default;
+}
+
+.submit-button {
+    width: 10vw;
+    border-radius: 20px;
+    margin: 3.5vh auto 0 auto;
+    padding: 15px 32px;
+    border: none;
+    background-color: rgb(72, 92, 92);
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgba(254, 242, 212, 255);
+    cursor: pointer;
+}
+
+.login-link {
+    margin: 30px auto 0 auto;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.login-text {
+    margin: 0;
+    color: rgb(72, 92, 92);
+    font-family: Arial, Helvetica, sans-serif;
+}

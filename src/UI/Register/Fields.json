@@ -1,0 +1,37 @@
+[
+    {
+        "label": "Email",
+        "placeholder": "Enter your email...",
+        "id": "registerEmail"
+    },
+    {
+        "label": "First Name",
+        "placeholder": "Enter your first name...",
+        "id": "firstName"
+    },
+    {
+        "label": "Last Name",
+        "placeholder": "Enter your last name...",
+        "id": "lastName"
+    },
+    {
+        "label": "Password",
+        "placeholder": "Enter your password...",
+        "id": "registerPassword"
+    },
+    {
+        "label": "Postcode",
+        "placeholder": "Enter your postcode...",
+        "id": "postcode"
+    },
+    {
+        "label": "House Number",
+        "placeholder": "Enter your house number...",
+        "id": "houseNumber"
+    },
+    {
+        "label": "Road Name",
+        "placeholder": "Enter your road name...",
+        "id": "roadName"
+    }
+]

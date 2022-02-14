@@ -1,11 +1,11 @@
+/* eslint-disable no-unused-vars */
 // const { hashSync, compareSync } = require("bcrypt");
-// const bodyParser = require("body-parser");
+const { createConnection } = require("mysql");
 const express = require("express");
-const mysql = require("mysql");
 
 const app = express();
 
-const connection = mysql.createConnection({
+export const connection = createConnection({
     host: "localhost",
     user: "newuser",
     password: "password",
@@ -19,10 +19,11 @@ const createTables = () => {
             email VARCHAR(255),
             firstName VARCHAR(255),
             lastName VARCHAR(255),
+            password VARCHAR(255),
             postcode VARCHAR(255),
             houseNumber INT,
             roadName VARCHAR(255),
-            accountNumber INT,
+            cardNumber VARCHAR(255),
             sortCode INT,
             cvc INT,
             primary key (id)
@@ -62,3 +63,12 @@ connection.connect((err) => {
 app.listen(5000, () => {
     console.log("Listening to port 5000.");
 });
+
+const loginTokens = {};
+
+const getToken = (id) => {
+    const token = Math.random().toString(36).substr(2) + Math.random().toString(36).substr(2);
+    loginTokens[token] = id;
+
+    return token;
+};

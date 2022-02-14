@@ -1,0 +1,21 @@
+.field-body {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 7.5vh;
+}
+
+.field-label {
+    width: 25%;
+    color: rgb(72, 92, 92);
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: default;
+}
+
+.field-input {
+    width: 75%;
+    margin: auto;
+    padding: 12px 20px;
+    border-radius: 4px;
+    border: 1px solid rgb(204, 204, 204);
+}
