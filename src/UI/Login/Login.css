@@ -1,0 +1,13 @@
+.login-body {
+    display: flex;
+    flex-direction: column;
+    width: 650px;
+    margin: 0 auto 0 auto;
+}
+
+.login-title {
+    margin: 30px auto 10px auto;
+    color: rgb(72, 92, 92);
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: default;
+}
