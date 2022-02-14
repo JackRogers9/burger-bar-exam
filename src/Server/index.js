@@ -157,3 +157,19 @@ app.post("/login", async (request, response) => {
         });
     });
 });
+
+app.post("/getUserDetails", async (request, response) => {
+    const { token } = request.body;
+    let id;
+
+    if (token) {
+        id = loginTokens[token];
+    }
+
+    if (id) {
+        connection.query(`SELECT * FROM accounts where id = "` + id + `"`, (error, results) => {
+            if (error) console.log(error);
+            response.status(200).json(results);
+        });
+    }
+});

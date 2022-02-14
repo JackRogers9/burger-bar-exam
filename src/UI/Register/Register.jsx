@@ -23,7 +23,8 @@ export default function Register() {
         const body = await response.json();
 
         if (body.message) {
-            document.getElementById('incorrect').innerHTML = body.message;
+            console.log(body.message);
+            // document.getElementById('incorrect').innerHTML = body.message;
         } else {
             window.location = '/login';
         }

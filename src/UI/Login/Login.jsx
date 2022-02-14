@@ -1,14 +1,6 @@
 import Fields from '../InputFields/Fields';
+import loginFields from './Fields.json';
 import './Login.css';
-
-const loginFields = [
-    { label: 'Email', placeholder: 'Enter your email...', id: 'loginEmail' },
-    {
-        label: 'Password',
-        placeholder: 'Enter your password...',
-        id: 'loginPassword',
-    },
-];
 
 export default function Login() {
     const login = async () => {
@@ -28,8 +20,10 @@ export default function Login() {
         const body = await response.json();
 
         if (body.message) {
-            document.getElementById('incorrect').innerHTML = body.message;
+            console.log(body.message);
+            // document.getElementById('incorrect').innerHTML = body.message;
         } else {
+            localStorage.setItem('token', body.token);
             window.location = '/';
         }
     };

@@ -1,0 +1,12 @@
+[
+    {
+        "label": "Email",
+        "placeholder": "Enter your email...",
+        "id": "loginEmail"
+    },
+    {
+        "label": "Password",
+        "placeholder": "Enter your password...",
+        "id": "loginPassword"
+    }
+]
