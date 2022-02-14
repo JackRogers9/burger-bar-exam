@@ -1,6 +1,6 @@
 import ItemFrame from './ItemFrames';
-import items from './Menu.json';
-import './ClickAndCollect.css';
+import items from './MenuOptions.json';
+import './Menu.css';
 
 export default function Menu() {
     return (

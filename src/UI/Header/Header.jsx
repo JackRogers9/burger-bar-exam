@@ -28,7 +28,7 @@ export default function Header() {
 
     return (
         <div className="header">
-            <Link to="/click-and-collect" className="header-link">
+            <Link to="/menu" className="header-link">
                 <h3 className="header-title"> Menu </h3>
             </Link>
 
