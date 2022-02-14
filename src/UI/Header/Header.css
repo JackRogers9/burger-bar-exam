@@ -8,6 +8,8 @@
 }
 
 .header-link {
+    display: flex;
+    justify-content: center;
     width: 12.5vw;
     margin: 0;
     text-decoration: none;
@@ -24,6 +26,6 @@
 
 .shopping-cart {
     height: 7.5vh;
-    margin: -1vh 0 0 2.5vw;
+    margin: -1vh auto 0 auto;
     cursor: pointer;
 }

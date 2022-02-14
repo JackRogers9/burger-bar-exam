@@ -1,0 +1,104 @@
+[
+    [
+        {
+            "category": "Burgers",
+            "name": "Ronnie's Special Cheese Burger",
+            "displayPrice": "£6.50",
+            "price": 6.5
+        },
+        {
+            "category": "Burgers",
+            "name": "The Two Ronnies",
+            "displayPrice": "£9.00",
+            "price": 9
+        },
+        {
+            "category": "Burgers",
+            "name": "Ronnie's Bacon Mix",
+            "displayPrice": "£7.50",
+            "price": 7.5
+        },
+        {
+            "category": "Burgers",
+            "name": "Chicken Delight",
+            "displayPrice": "£7.00",
+            "price": 7
+        },
+        {
+            "category": "Burgers",
+            "name": "Cheesy Ronnie's Halloumi Burger",
+            "displayPrice": "£7.00",
+            "price": 7
+        },
+        {
+            "category": "Burgers",
+            "name": "Veggie Supreme",
+            "displayPrice": "£6.50",
+            "price": 6.5
+        }
+    ],
+    [
+        {
+            "category": "Sides",
+            "name": "Chips",
+            "displayPrice": "£2.50",
+            "price": 2.5
+        },
+        {
+            "category": "Sides",
+            "name": "Onion Rings",
+            "displayPrice": "£3.00",
+            "price": 3
+        },
+        {
+            "category": "Sides",
+            "name": "Sweet Potato Fries",
+            "displayPrice": "£3.50",
+            "price": 3.5
+        }
+    ],
+    [
+        {
+            "category": "Drinks",
+            "name": "Cola",
+            "displayPrice": "£1.50",
+            "price": 1.5
+        },
+        {
+            "category": "Drinks",
+            "name": "Lemonade",
+            "displayPrice": "£1.50",
+            "price": 1.5
+        },
+        {
+            "category": "Drinks",
+            "name": "Fanta Orange",
+            "displayPrice": "£1.50",
+            "price": 1.5
+        },
+        {
+            "category": "Drinks",
+            "name": "Ronnies Special Shake - Chocolate",
+            "displayPrice": "£3.00",
+            "price": 3
+        },
+        {
+            "category": "Drinks",
+            "name": "Ronnies Special Shake - Strawberry",
+            "displayPrice": "£3.00",
+            "price": 3
+        },
+        {
+            "category": "Drinks",
+            "name": "Ronnies Special Shake - Vanilla",
+            "displayPrice": "£3.00",
+            "price": 3
+        },
+        {
+            "category": "Drinks",
+            "name": "Ronnies Special Shake - Banana",
+            "displayPrice": "£3.00",
+            "price": 3
+        }
+    ]
+]
