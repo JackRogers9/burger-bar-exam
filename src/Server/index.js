@@ -18,6 +18,7 @@ const createTables = () => {
     connection.query(
         `CREATE TABLE if not exists accounts (
             id INT auto_increment,
+            userID INT,
             email VARCHAR(255),
             firstName VARCHAR(255),
             lastName VARCHAR(255),
@@ -25,6 +26,14 @@ const createTables = () => {
             postcode VARCHAR(255),
             houseNumber INT,
             roadName VARCHAR(255),
+            primary key (id)
+        );`
+    );
+
+    connection.query(
+        `CREATE TABLE if not exists card_details (
+            id INT auto_increment,
+            userID INT,
             cardNumber VARCHAR(255),
             sortCode INT,
             cvc INT,
@@ -46,8 +55,7 @@ const createTables = () => {
     connection.query(
         `CREATE TABLE if not exists previous_orders (
             id INT auto_increment,
-            email VARCHAR(255),
-            accounts_id INT,
+            userID INT,
             items JSON,
             totalPrice INT,
             primary key (id)
@@ -75,6 +83,7 @@ app.use(json());
 
 app.post("/registerNewUser", async (request, response) => {
     const {
+        userID,
         email,
         firstName,
         lastName,
@@ -105,8 +114,9 @@ app.post("/registerNewUser", async (request, response) => {
 
     if (errorMessage === "") {
         connection.query(
-            "INSERT into accounts (email, firstName, lastName, password, postcode, houseNumber, roadName, cardNumber, sortCode, cvc) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            "INSERT into accounts (userID, email, firstName, lastName, password, postcode, houseNumber, roadName) VALUES(?, ?, ?, ?, ?, ?, ?, ?)",
             [
+                userID,
                 email,
                 firstName,
                 lastName,
@@ -114,9 +124,6 @@ app.post("/registerNewUser", async (request, response) => {
                 postcode,
                 houseNumber,
                 roadName,
-                cardNumber,
-                sortCode,
-                cvc,
             ],
             (error, results) => {
                 if (error) console.log(error);
@@ -133,6 +140,22 @@ app.post("/registerNewUser", async (request, response) => {
             message: errorMessage,
         });
     }
+});
+
+app.post("/saveCardDetails", async (request, response) => {
+    const { userID, cardNumber, sortCode, cvc } = request.body;
+
+    connection.query(
+        "INSERT into card_details (userID, cardNumber, sortCode, cvc) VALUES(?, ?, ?, ?)",
+        [userID, cardNumber, sortCode, cvc],
+        (error, results) => {
+            if (error) console.log(error);
+
+            response.status(200).json({
+                success: true,
+            });
+        }
+    );
 });
 
 const loginTokens = {};
@@ -209,12 +232,22 @@ app.post("/removeFromBasket", async (request, response) => {
     });
 });
 
+app.post("/removeAllFromBasket", async (request, response) => {
+    connection.query("DELETE from basket", (error, results) => {
+        if (error) console.log(error);
+
+        response.status(200).json({
+            success: true,
+        });
+    });
+});
+
 app.post("/addToPreviousOrders", async (request, response) => {
-    const { items, totalCost } = request.body;
+    const { userID, items, totalCost } = request.body;
 
     connection.query(
-        "INSERT into previous_orders (items, totalPrice) VALUES(?, ?)",
-        [JSON.stringify(items), totalCost],
+        "INSERT into previous_orders (userID, items, totalPrice) VALUES(?, ?, ?)",
+        [userID, JSON.stringify(items), totalCost],
         (error, results) => {
             if (error) console.log(error);
 

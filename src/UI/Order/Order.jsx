@@ -36,17 +36,51 @@ export default function Order() {
         calculateCost(body);
     };
 
-    const addToPreviousOrders = async () => {
+    const addToPreviousOrders = async (userID) => {
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ items: allItems, totalCost }),
+            body: JSON.stringify({ userID, items: allItems, totalCost }),
         };
 
         const response = await fetch('/addToPreviousOrders', requestOptions);
         const body = await response.json();
 
         console.log(body);
+    };
+
+    const removeAllItemsFromBasket = async () => {
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(),
+        };
+
+        const response = await fetch('/removeAllFromBasket', requestOptions);
+        const body = await response.json();
+
+        console.log(body);
+    };
+
+    const getDetails = async () => {
+        console.log(localStorage.token);
+
+        if (localStorage.token) {
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    token: localStorage.token,
+                }),
+            };
+
+            const response = await fetch('/getUserDetails', requestOptions);
+            const body = await response.json();
+
+            console.log(body);
+
+            addToPreviousOrders(body[0].userID);
+        }
     };
 
     function delay(ms) {
@@ -57,7 +91,8 @@ export default function Order() {
 
     const orderConfirmation = async () => {
         clickOrder(true);
-        addToPreviousOrders();
+        getDetails();
+        removeAllItemsFromBasket();
 
         await delay(2000);
         navigate('/order-confirmation');
