@@ -208,3 +208,28 @@ app.post("/removeFromBasket", async (request, response) => {
         });
     });
 });
+
+app.post("/addToPreviousOrders", async (request, response) => {
+    const { items, totalCost } = request.body;
+
+    connection.query(
+        "INSERT into previous_orders (items, totalPrice) VALUES(?, ?)",
+        [JSON.stringify(items), totalCost],
+        (error, results) => {
+            if (error) console.log(error);
+
+            response.status(200).json({
+                success: true,
+            });
+        }
+    );
+});
+
+app.post("/getPreviousOrder", async (request, response) => {
+    const { id } = request.body;
+
+    connection.query("SELECT * FROM previous_orders where id = ?", [id], (error, results) => {
+        if (error) console.log(error);
+        response.status(200).json(results);
+    });
+});
