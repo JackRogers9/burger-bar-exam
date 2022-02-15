@@ -1,0 +1,41 @@
+.account-details-page {
+    height: 85vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.account-details-body {
+    display: flex;
+    flex-direction: column;
+    width: 750px;
+    margin: 0 auto 0 auto;
+}
+
+.account-header {
+    margin: 40px auto 10px auto;
+    color: rgb(72, 92, 92);
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: default;
+}
+
+.account-subheader {
+    margin: 30px auto 10px auto;
+    color: rgb(72, 92, 92);
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: default;
+}
+
+.previous-order-subheaders-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.previous-order-subheaders {
+    width: 20%;
+    padding: 5px;
+    margin-top: 30px;
+    color: rgb(72, 92, 92);
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: default;
+}

@@ -58,6 +58,7 @@ const createTables = () => {
             userID INT,
             items JSON,
             totalPrice INT,
+            orderDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             primary key (id)
         );`
     );
@@ -82,19 +83,8 @@ app.use(urlencoded({ extended: true }));
 app.use(json());
 
 app.post("/registerNewUser", async (request, response) => {
-    const {
-        userID,
-        email,
-        firstName,
-        lastName,
-        password,
-        postcode,
-        houseNumber,
-        roadName,
-        cardNumber,
-        sortCode,
-        cvc,
-    } = request.body;
+    const { userID, email, firstName, lastName, password, postcode, houseNumber, roadName } =
+        request.body;
 
     let errorMessage = "";
 
@@ -258,11 +248,15 @@ app.post("/addToPreviousOrders", async (request, response) => {
     );
 });
 
-app.post("/getPreviousOrder", async (request, response) => {
-    const { id } = request.body;
+app.post("/getPreviousOrders", async (request, response) => {
+    const { userID } = request.body;
 
-    connection.query("SELECT * FROM previous_orders where id = ?", [id], (error, results) => {
-        if (error) console.log(error);
-        response.status(200).json(results);
-    });
+    connection.query(
+        "SELECT * FROM previous_orders where userID = ?",
+        [userID],
+        (error, results) => {
+            if (error) console.log(error);
+            response.status(200).json(results);
+        }
+    );
 });

@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid';
 
-export default function ItemFrame({ items, basket, getItemsInBasket }) {
+export default function ItemFrame({ items, location, getItemsInBasket }) {
     const addToBasket = async (item) => {
         console.log(item);
 
@@ -41,11 +41,13 @@ export default function ItemFrame({ items, basket, getItemsInBasket }) {
                 <h3 className="option-name"> {name} </h3>
                 <h3 className="option-price"> {displayPrice} </h3>
 
-                {!basket ? (
+                {location === 'menu' && (
                     <button type="button" className="add-button" onClick={() => addToBasket(item)}>
                         Add to Basket
                     </button>
-                ) : (
+                )}
+
+                {location === 'basket' && (
                     <button
                         type="button"
                         className="add-button"

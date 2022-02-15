@@ -1,0 +1,42 @@
+.previous-order {
+    display: flex;
+    flex-direction: column;
+}
+
+.previous-order-summary {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 1px solid black;
+}
+
+.previous-order-text {
+    width: 20%;
+    padding: 5px;
+    color: rgb(72, 92, 92);
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: default;
+}
+
+.previous-order-date {
+    margin: 0;
+    color: rgb(72, 92, 92);
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: default;
+}
+
+.previous-order-button {
+    width: 125px;
+    border-radius: 20px;
+    margin: 0 auto 0 auto;
+    padding: 15px 32px;
+    border: none;
+    background-color: rgb(72, 92, 92);
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgba(254, 242, 212, 255);
+    cursor: pointer;
+}

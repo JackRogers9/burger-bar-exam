@@ -83,24 +83,38 @@ export default function Basket() {
             <div className="basket-body">
                 <h1 className="basket-header"> Basket </h1>
 
+                <div className="section-seperator" />
+
                 {burgers.length > 0 && (
                     <>
                         <h2 className="basket-subheader"> Burgers </h2>
-                        <ItemFrame items={burgers} getItemsInBasket={getItemsInBasket} basket />
+                        <ItemFrame
+                            items={burgers}
+                            location="basket"
+                            getItemsInBasket={getItemsInBasket}
+                        />
                     </>
                 )}
 
                 {sides.length > 0 && (
                     <>
                         <h2 className="basket-subheader"> Sides </h2>
-                        <ItemFrame items={sides} getItemsInBasket={getItemsInBasket} basket />
+                        <ItemFrame
+                            items={sides}
+                            location="basket"
+                            getItemsInBasket={getItemsInBasket}
+                        />
                     </>
                 )}
 
                 {drinks.length > 0 && (
                     <>
                         <h2 className="basket-subheader"> Drinks </h2>
-                        <ItemFrame items={drinks} getItemsInBasket={getItemsInBasket} basket />
+                        <ItemFrame
+                            items={drinks}
+                            location="basket"
+                            getItemsInBasket={getItemsInBasket}
+                        />
                     </>
                 )}
 
