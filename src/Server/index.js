@@ -147,7 +147,7 @@ const getToken = (id) => {
 app.post("/login", async (request, response) => {
     const { email, password } = request.body;
 
-    connection.query(`SELECT * FROM accounts where email = "` + email + `"`, (error, results) => {
+    connection.query("SELECT * FROM accounts where email = ?", [email], (error, results) => {
         if (error) console.log(error);
         const auth = compareSync(password, results[0].password);
 
@@ -167,9 +167,44 @@ app.post("/getUserDetails", async (request, response) => {
     }
 
     if (id) {
-        connection.query(`SELECT * FROM accounts where id = "` + id + `"`, (error, results) => {
+        connection.query("SELECT * FROM accounts where id = ?", [id], (error, results) => {
             if (error) console.log(error);
             response.status(200).json(results);
         });
     }
+});
+
+app.post("/addToBasket", async (request, response) => {
+    const { name, displayPrice, price, category } = request.body;
+
+    connection.query(
+        "INSERT into basket (name, displayPrice, price, category) VALUES(?, ?, ?, ?)",
+        [name, displayPrice, price, category],
+        (error, results) => {
+            if (error) console.log(error);
+
+            response.status(200).json({
+                success: true,
+            });
+        }
+    );
+});
+
+app.post("/getItemsInBasket", async (request, response) => {
+    connection.query("SELECT * FROM basket", (error, results) => {
+        if (error) console.log(error);
+        response.status(200).json(results);
+    });
+});
+
+app.post("/removeFromBasket", async (request, response) => {
+    const { id } = request.body;
+
+    connection.query("DELETE from basket WHERE id = ?", [id], (error, results) => {
+        if (error) console.log(error);
+
+        response.status(200).json({
+            success: true,
+        });
+    });
 });
