@@ -2,36 +2,49 @@
     {
         "label": "Email",
         "placeholder": "Enter your email...",
-        "id": "registerEmail"
+        "id": "registerEmail",
+        "className": "field-label"
     },
     {
         "label": "First Name",
         "placeholder": "Enter your first name...",
-        "id": "firstName"
+        "id": "firstName",
+        "className": "field-label"
     },
     {
         "label": "Last Name",
         "placeholder": "Enter your last name...",
-        "id": "lastName"
+        "id": "lastName",
+        "className": "field-label"
     },
     {
         "label": "Password",
         "placeholder": "Enter your password...",
-        "id": "registerPassword"
+        "id": "registerPassword",
+        "className": "field-label"
     },
     {
         "label": "Postcode",
         "placeholder": "Enter your postcode...",
-        "id": "postcode"
+        "id": "postcode",
+        "className": "field-label"
     },
     {
         "label": "House Number",
         "placeholder": "Enter your house number...",
-        "id": "houseNumber"
+        "id": "houseNumber",
+        "className": "field-label"
     },
     {
         "label": "Road Name",
         "placeholder": "Enter your road name...",
-        "id": "roadName"
+        "id": "roadName",
+        "className": "field-label"
+    },
+    {
+        "label": "Date of Birth",
+        "placeholder": "Click to select date of birth...",
+        "id": "dob",
+        "className": "field-label-date"
     }
 ]

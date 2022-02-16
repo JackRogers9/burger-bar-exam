@@ -27,7 +27,7 @@ const menuSections = [
     },
 ];
 
-const incorrectDataTypes = [undefined, null, NaN];
+const invalidDataTypes = [undefined, null, NaN];
 
 export default function Menu() {
     return (
@@ -38,7 +38,7 @@ export default function Menu() {
                         <HeaderH2 className="menu-subheader" text={subheader} />
                         <ItemFrame items={items} location="menu" />
 
-                        {!incorrectDataTypes.includes(extraText) && (
+                        {!invalidDataTypes.includes(extraText) && (
                             <>
                                 <HeaderH4 text={extraText[0]} className="extra-information" />
                                 <HeaderH4 text={extraText[1]} className="extra-information" />

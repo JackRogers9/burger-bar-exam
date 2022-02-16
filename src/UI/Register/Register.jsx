@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 
+import ComponentPage from '../ReusableComponents/ComponentPage/ComponentPage';
 import ComponentBody from '../ReusableComponents/ComponentBody/ComponentBody';
 import { HeaderH3 } from '../ReusableComponents/Headers/Headers';
 import fieldInformation from './Fields.json';
@@ -47,19 +48,21 @@ const registerNewUser = async () => {
 
 export default function Register() {
     return (
-        <ComponentBody header="Register">
-            <Fields fieldInformation={fieldInformation} />
+        <ComponentPage>
+            <ComponentBody header="Register">
+                <Fields fieldInformation={fieldInformation} />
 
-            <button type="button" className="submit-button" onClick={registerNewUser}>
-                Submit
-            </button>
+                <button type="button" className="submit-button" onClick={registerNewUser}>
+                    Submit
+                </button>
 
-            <Link to="/login" className="login-link">
-                <HeaderH3
-                    className="login-text"
-                    text="Already have an account? Click here to sign in."
-                />
-            </Link>
-        </ComponentBody>
+                <Link to="/login" className="login-link">
+                    <HeaderH3
+                        className="login-text"
+                        text="Already have an account? Click here to sign in."
+                    />
+                </Link>
+            </ComponentBody>
+        </ComponentPage>
     );
 }
