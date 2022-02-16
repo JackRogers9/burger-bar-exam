@@ -7,6 +7,7 @@ import fieldInformation from './Fields.json';
 import Fields from '../InputFields/Fields';
 import GetDetails from './GetDetails';
 import './Register.css';
+import CardDetails from '../CardDetails/CardDetails';
 
 const methodAndHeaders = {
     method: 'POST',
@@ -14,9 +15,13 @@ const methodAndHeaders = {
 };
 
 const saveUsersCardDetails = async (userID) => {
+    const cardNumber = document.getElementById('cardNumber').value;
+    const sortCode = document.getElementById('sortcode').value;
+    const cvc = document.getElementById('cvc').value;
+
     const requestOptions = {
         ...methodAndHeaders,
-        body: JSON.stringify({ userID, cardNumber: 1000000000000000, sortCode: 100000, cvc: 100 }),
+        body: JSON.stringify({ userID, cardNumber, sortCode, cvc }),
     };
 
     const response = await fetch('/saveCardDetails', requestOptions);
@@ -51,6 +56,8 @@ export default function Register() {
         <ComponentPage>
             <ComponentBody header="Register">
                 <Fields fieldInformation={fieldInformation} />
+
+                <CardDetails />
 
                 <button type="button" className="submit-button" onClick={registerNewUser}>
                     Submit

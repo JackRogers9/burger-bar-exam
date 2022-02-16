@@ -1,0 +1,48 @@
+.card-details-section {
+    display: flex;
+    flex-direction: row;
+}
+
+.card-label {
+    width: 177px;
+    color: rgb(255, 255, 255);
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: default;
+}
+
+.card-input-column {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+}
+
+.card-number-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.error-message-column {
+    display: flex;
+    align-items: center;
+    width: 50%;
+    margin: 10px 0 0 0;
+    padding-left: 5%;
+    color: rgb(188, 65, 35);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.card-input {
+    width: 50%;
+    margin-top: 10px;
+    padding: 12px 20px;
+    border-radius: 4px;
+    border: 1px solid rgb(204, 204, 204);
+}
+
+.cvc-input {
+    width: 100%;
+    margin-top: 10px;
+    padding: 12px 20px;
+    border-radius: 4px;
+    border: 1px solid rgb(204, 204, 204);
+}

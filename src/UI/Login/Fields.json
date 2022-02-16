@@ -2,11 +2,13 @@
     {
         "label": "Email",
         "placeholder": "Enter your email...",
-        "id": "loginEmail"
+        "id": "loginEmail",
+        "className": "field-label"
     },
     {
         "label": "Password",
         "placeholder": "Enter your password...",
-        "id": "loginPassword"
+        "id": "loginPassword",
+        "className": "field-label"
     }
 ]
