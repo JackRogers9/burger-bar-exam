@@ -1,9 +1,26 @@
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
-import { HeaderH3 } from '../ReusableComponents/Headers/Headers';
+import { HeaderH2, HeaderH3 } from '../ReusableComponents/Headers/Headers';
 import './BasketMessages.css';
 
 export default function BasketMessages({ userLoggedIn, allItems }) {
+    const [totalCost, updateCost] = useState(0);
+
+    const calculateCost = () => {
+        updateCost(0);
+
+        allItems.forEach((item) => {
+            updateCost((currentPrice) => currentPrice + item.price);
+        });
+    };
+
+    useEffect(() => {
+        calculateCost();
+    });
+
+    const formatPrice = new Intl.NumberFormat(undefined, { style: 'currency', currency: 'GBP' });
+
     return (
         <>
             {!allItems.length > 0 && (
@@ -20,11 +37,18 @@ export default function BasketMessages({ userLoggedIn, allItems }) {
             )}
 
             {userLoggedIn && allItems.length > 0 && (
-                <Link to="/order" className="order-link">
-                    <button type="button" className="submit-button">
-                        Continue
-                    </button>
-                </Link>
+                <>
+                    <HeaderH2
+                        className="total-price-header"
+                        text={`Total Price : ${formatPrice.format(totalCost)}`}
+                    />
+
+                    <Link to="/order" className="order-link">
+                        <button type="button" className="submit-button">
+                            Continue
+                        </button>
+                    </Link>
+                </>
             )}
 
             {!userLoggedIn && allItems.length > 0 && (
