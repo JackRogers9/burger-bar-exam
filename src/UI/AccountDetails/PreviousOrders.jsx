@@ -4,6 +4,43 @@ import { HeaderH3 } from '../ReusableComponents/Headers/Headers';
 import ItemFrames from '../Menu/ItemFrames';
 import './PreviousOrders.css';
 
+const methodAndHeaders = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+};
+
+const removeAllItemsFromBasket = async () => {
+    const requestOptions = {
+        ...methodAndHeaders,
+        body: JSON.stringify(),
+    };
+
+    const response = await fetch('/removeAllFromBasket', requestOptions);
+    const body = await response.json();
+
+    console.log(body);
+};
+
+const addToBasket = async (item) => {
+    const requestOptions = {
+        ...methodAndHeaders,
+        body: JSON.stringify(item),
+    };
+
+    const response = await fetch('/addToBasket', requestOptions);
+    const body = await response.json();
+
+    console.log(body);
+};
+
+const addPreviousOrderToBasket = (items) => {
+    removeAllItemsFromBasket();
+
+    items.forEach((item) => {
+        addToBasket(item);
+    });
+};
+
 export default function PreviousOrder({ date, time, displayPrice, items }) {
     const [expandOrder, toggleExpand] = useState(false);
 
@@ -25,7 +62,11 @@ export default function PreviousOrder({ date, time, displayPrice, items }) {
                     {expandOrder ? 'Shrink' : 'Expand'}
                 </button>
 
-                <button type="button" className="previous-order-button">
+                <button
+                    type="button"
+                    className="previous-order-button"
+                    onClick={() => addPreviousOrderToBasket(items)}
+                >
                     Reorder
                 </button>
             </div>
