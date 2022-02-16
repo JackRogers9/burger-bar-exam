@@ -39,6 +39,10 @@
     border: 1px solid rgb(204, 204, 204);
 }
 
+.card-input:focus {
+    outline: 2px solid rgb(188, 65, 35);
+}
+
 .cvc-input {
     width: 100%;
     margin-top: 10px;
