@@ -42,7 +42,11 @@ export default function ItemFrame({ items, location, getItemsInBasket }) {
                 <h3 className="option-price"> {displayPrice} </h3>
 
                 {location === 'menu' && (
-                    <button type="button" className="add-button" onClick={() => addToBasket(item)}>
+                    <button
+                        type="button"
+                        className="menu-add-button"
+                        onClick={() => addToBasket(item)}
+                    >
                         Add to Basket
                     </button>
                 )}

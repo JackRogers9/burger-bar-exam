@@ -1,8 +1,10 @@
 body {
-    height: 99vh;
-    width: 99vw;
+    width: 100vw;
+    height: 100vh;
+    max-width: 100%;
     box-sizing: border-box;
     overflow-x: hidden;
     overflow-y: hidden;
-    background-color: rgba(254, 242, 212, 255);
+    background-color: rgb(11, 23, 42);
+    margin: 0px 0px 0px 0px;
 }

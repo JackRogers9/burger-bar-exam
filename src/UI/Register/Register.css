@@ -7,7 +7,7 @@
 
 .register-title {
     margin: 40px auto 10px auto;
-    color: rgb(72, 92, 92);
+    color: rgb(188, 65, 35);
     font-family: Arial, Helvetica, sans-serif;
     cursor: default;
 }
@@ -18,13 +18,13 @@
     margin: 3.5vh auto 0 auto;
     padding: 15px 32px;
     border: none;
-    background-color: rgb(72, 92, 92);
+    background-color: rgb(188, 65, 35);
     text-align: center;
     text-decoration: none;
     font-size: 16px;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    color: rgba(254, 242, 212, 255);
+    color: rgb(255, 255, 255);
     cursor: pointer;
 }
 
@@ -36,6 +36,6 @@
 
 .login-text {
     margin: 0;
-    color: rgb(72, 92, 92);
+    color: rgb(255, 255, 255);
     font-family: Arial, Helvetica, sans-serif;
 }

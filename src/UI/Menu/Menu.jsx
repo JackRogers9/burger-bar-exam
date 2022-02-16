@@ -8,6 +8,8 @@ export default function Menu() {
             <div className="menu-body">
                 <h1 className="menu-header"> Menu </h1>
 
+                <div className="section-seperator" />
+
                 <h2 className="menu-subheader"> Burgers </h2>
                 <ItemFrame items={items[0]} location="menu" />
 

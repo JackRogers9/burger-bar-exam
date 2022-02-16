@@ -13,14 +13,14 @@
 
 .basket-header {
     margin: 40px auto 10px auto;
-    color: rgb(72, 92, 92);
+    color: rgb(188, 65, 35);
     font-family: Arial, Helvetica, sans-serif;
     cursor: default;
 }
 
 .basket-subheader {
     margin: 30px 0 10px 0;
-    color: rgb(72, 92, 92);
+    color: rgb(188, 65, 35);
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -30,13 +30,13 @@
 }
 
 .alert-text {
-    color: rgb(72, 92, 92);
+    color: rgb(255, 255, 255);
     font-family: Arial, Helvetica, sans-serif;
     margin: 30px auto 0 auto;
 }
 
 .basket-link {
-    color: rgb(72, 92, 92);
+    color: rgb(255, 255, 255);
     font-family: Arial, Helvetica, sans-serif;
     text-decoration: none;
     cursor: pointer;
@@ -63,7 +63,7 @@
 .menu-link {
     width: fit-content;
     margin: 20px auto 0 auto;
-    color: rgb(72, 92, 92);
+    color: rgb(255, 255, 255);
     font-family: Arial, Helvetica, sans-serif;
     text-decoration: none;
     cursor: pointer;

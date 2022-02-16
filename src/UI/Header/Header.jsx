@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import shoppingCart from '../Images/shopping-cart.svg';
+import shoppingCart from '../Images/ShoppingCart.jpg';
 import './Header.css';
 
 export default function Header() {

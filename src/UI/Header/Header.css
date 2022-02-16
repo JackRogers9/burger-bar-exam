@@ -4,7 +4,7 @@
     justify-content: flex-end;
     align-items: center;
     height: 10vh;
-    background-color: rgb(72, 92, 92);
+    background-color: rgb(11, 23, 42);
 }
 
 .header-link {
@@ -19,13 +19,13 @@
     width: fit-content;
     margin: 0 auto 0 auto;
     text-decoration: none;
-    color: rgba(254, 242, 212, 255);
+    color: rgb(255, 255, 255);
     font-family: Arial, Helvetica, sans-serif;
     cursor: pointer;
 }
 
 .shopping-cart {
-    height: 7.5vh;
-    margin: -1vh auto 0 auto;
+    height: 5vh;
+    margin: 0 auto 0 auto;
     cursor: pointer;
 }

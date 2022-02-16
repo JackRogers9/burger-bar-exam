@@ -7,20 +7,20 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    border: 1px solid black;
+    border: 2px solid rgb(188, 65, 35);
 }
 
 .previous-order-text {
     width: 20%;
     padding: 5px;
-    color: rgb(72, 92, 92);
+    color: rgb(255, 255, 255);
     font-family: Arial, Helvetica, sans-serif;
     cursor: default;
 }
 
 .previous-order-date {
     margin: 0;
-    color: rgb(72, 92, 92);
+    color: rgb(255, 255, 255);
     font-family: Arial, Helvetica, sans-serif;
     cursor: default;
 }
@@ -31,12 +31,12 @@
     margin: 0 auto 0 auto;
     padding: 15px 32px;
     border: none;
-    background-color: rgb(72, 92, 92);
+    background-color: rgb(188, 65, 35);
     text-align: center;
     text-decoration: none;
     font-size: 16px;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    color: rgba(254, 242, 212, 255);
+    color: rgb(255, 255, 255);
     cursor: pointer;
 }
