@@ -1,11 +1,11 @@
-.login-body {
+.component-body {
     display: flex;
     flex-direction: column;
-    width: 650px;
-    margin: 0 auto 0 auto;
+    width: 750px;
+    margin: 0 auto 5vh auto;
 }
 
-.login-title {
+.page-header {
     margin: 40px auto 10px auto;
     color: rgb(188, 65, 35);
     font-family: Arial, Helvetica, sans-serif;

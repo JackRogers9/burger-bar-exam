@@ -1,14 +1,20 @@
 import { Link } from 'react-router-dom';
 
+import { HeaderH3 } from '../ReusableComponents/Headers/Headers';
+import './BasketMessages.css';
+
 export default function BasketMessages({ userLoggedIn, allItems }) {
     return (
         <>
             {!allItems.length > 0 && (
                 <div className="empty-basket-message">
-                    <h3 className="alert-text"> You have added no items to your basket. </h3>
+                    <HeaderH3
+                        className="alert-text"
+                        text="You have added no items to your basket."
+                    />
 
                     <Link to="/menu" className="order-link">
-                        <h3 className="menu-link"> Click here to browse our Menu. </h3>
+                        <HeaderH3 className="menu-link" text="Click here to browse our Menu." />
                     </Link>
                 </div>
             )}
@@ -23,16 +29,20 @@ export default function BasketMessages({ userLoggedIn, allItems }) {
 
             {!userLoggedIn && allItems.length > 0 && (
                 <>
-                    <h3 className="alert-text">
-                        You are not currently signed in. Please Register or Sign in.
-                    </h3>
-                    <div className="register-and-login-link">
+                    <HeaderH3
+                        className="alert-text"
+                        text="You are not currently signed in. Please Register or Sign in."
+                    />
+
+                    <div className="link-row">
                         <Link to="/register" className="basket-link">
-                            <h3> Register </h3>
+                            <HeaderH3 text="Register" />
                         </Link>
-                        <h3 className="link-seperator"> / </h3>
+
+                        <HeaderH3 text="/" className="link-seperator" />
+
                         <Link to="/login" className="basket-link">
-                            <h3> Login </h3>
+                            <HeaderH3 text="Login" />
                         </Link>
                     </div>
                 </>

@@ -1,13 +1,20 @@
 import { Link } from 'react-router-dom';
+
 import fieldInformation from './Fields.json';
 import Fields from '../InputFields/Fields';
 import GetDetails from './GetDetails';
 import './Register.css';
+import ComponentBody from '../ReusableComponents/ComponentBody/ComponentBody';
+import { HeaderH3 } from '../ReusableComponents/Headers/Headers';
+
+const methodAndHeaders = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+};
 
 const saveUsersCardDetails = async (userID) => {
     const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        ...methodAndHeaders,
         body: JSON.stringify({ userID, cardNumber: 1000000000000000, sortCode: 100000, cvc: 100 }),
     };
 
@@ -23,8 +30,7 @@ const registerNewUser = async () => {
     const userID = Math.floor(100000 + Math.random() * 900000);
 
     const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        ...methodAndHeaders,
         body: JSON.stringify({ ...userDetails, userID }),
     };
 
@@ -41,9 +47,7 @@ const registerNewUser = async () => {
 
 export default function Register() {
     return (
-        <div className="register-body">
-            <h1 className="register-title"> Register </h1>
-
+        <ComponentBody header="Register">
             <Fields fieldInformation={fieldInformation} />
 
             <button type="button" className="submit-button" onClick={registerNewUser}>
@@ -51,8 +55,11 @@ export default function Register() {
             </button>
 
             <Link to="/login" className="login-link">
-                <h3 className="login-text"> Already have an account? Click here to sign in.</h3>
+                <HeaderH3
+                    className="login-text"
+                    text="Already have an account? Click here to sign in."
+                />
             </Link>
-        </div>
+        </ComponentBody>
     );
 }

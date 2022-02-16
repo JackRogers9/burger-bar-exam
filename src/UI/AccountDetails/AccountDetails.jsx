@@ -1,14 +1,27 @@
 import { useEffect, useState } from 'react';
-import { HeaderH1, HeaderH2, HeaderH3 } from '../ReusableComponents/Headers';
+
+import ComponentBody from '../ReusableComponents/ComponentBody/ComponentBody';
+import ComponentPage from '../ReusableComponents/ComponentPage/ComponentPage';
+import { HeaderH2, HeaderH3 } from '../ReusableComponents/Headers/Headers';
 import PreviousOrder from './PreviousOrders';
 import './AccountDetails.css';
+
+const price = new Intl.NumberFormat(undefined, { style: 'currency', currency: 'GBP' });
+
+const getDateAndTime = (timeStamp) => {
+    const [date, time] = timeStamp.split('T');
+    const [year, month, day] = date.split('-');
+
+    const dateUkFormat = `${day}/${month}/${year}`;
+    const timestamp = time.match(/.{1,5}/g);
+
+    return [dateUkFormat, timestamp[0]];
+};
 
 const methodAndHeaders = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
 };
-
-const formatPrice = new Intl.NumberFormat(undefined, { style: 'currency', currency: 'GBP' });
 
 export default function AccountDetails() {
     const [previousOrders, addPreviousOrders] = useState([]);
@@ -36,40 +49,25 @@ export default function AccountDetails() {
         }
     };
 
-    const getDateAndTime = (timeStamp) => {
-        const [date, time] = timeStamp.split('T');
-        const [year, month, day] = date.split('-');
-
-        const dateUkFormat = `${day}/${month}/${year}`;
-        const timeFormat = time.match(/.{1,5}/g);
-
-        return [dateUkFormat, timeFormat[0]];
-    };
-
     useEffect(() => {
         getUserDetails();
     }, []);
 
     return (
-        <div className="account-details-page">
-            <div className="account-details-body">
-                <HeaderH1 className="account-header" text="Account Details" />
-
-                <div className="section-seperator" />
-
-                <HeaderH2 className="account-subheader" text="Previous Orders" />
+        <ComponentPage>
+            <ComponentBody header="Account Details">
+                <HeaderH2 className="subheader" text="Previous Orders" />
 
                 {previousOrders.length > 0 && (
-                    <div className="previous-order-body">
-                        <div className="previous-order-subheaders-row">
-                            <HeaderH3 text="Order Date" className="previous-order-subheaders" />
-                            <HeaderH3 text="Order Price" className="previous-order-subheaders" />
-                            <HeaderH3 text="Order Count" className="previous-order-subheaders" />
+                    <>
+                        <div className="column-headers-row">
+                            <HeaderH3 text="Order Date" className="column-headers" />
+                            <HeaderH3 text="Order Price" className="column-headers" />
+                            <HeaderH3 text="Order Count" className="column-headers" />
                         </div>
 
-                        {previousOrders.map((order) => {
-                            const { totalPrice, items, orderDate } = order;
-                            const displayPrice = formatPrice.format(totalPrice);
+                        {previousOrders.map(({ totalPrice, items, orderDate }) => {
+                            const displayPrice = price.format(totalPrice);
                             const orderItems = JSON.parse(items, null, 4);
 
                             const [date, time] = getDateAndTime(orderDate);
@@ -79,13 +77,14 @@ export default function AccountDetails() {
                                     date={date}
                                     time={time}
                                     items={orderItems}
+                                    key={`${date} ${time}`}
                                     displayPrice={displayPrice}
                                 />
                             );
                         })}
-                    </div>
+                    </>
                 )}
-            </div>
-        </div>
+            </ComponentBody>
+        </ComponentPage>
     );
 }

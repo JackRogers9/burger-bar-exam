@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import ComponentBody from '../ReusableComponents/ComponentBody/ComponentBody';
+import { HeaderH2 } from '../ReusableComponents/Headers/Headers';
+
 export default function OrderConfirmation() {
     const [orderToken, addOrderToken] = useState('');
 
@@ -21,18 +24,18 @@ export default function OrderConfirmation() {
     }, []);
 
     return (
-        <div className="order-summary">
-            <h1 className="order-header"> Order Confirmed </h1>
-            <div className="section-seperator" />
-
-            <h2 className="order-subheader"> Order Reference : {orderToken} </h2>
-            <h2 className="order-subheader"> Use this reference when you pickup your order. </h2>
+        <ComponentBody header="Order Confirmed">
+            <HeaderH2 className="order-subheader" text={`Order Reference : ${orderToken}`} />
+            <HeaderH2
+                className="order-subheader"
+                text="Use this reference when you pickup your order."
+            />
 
             <Link to="/" className="homepage-link">
                 <button type="button" className="submit-button">
                     Return to the homepage
                 </button>
             </Link>
-        </div>
+        </ComponentBody>
     );
 }

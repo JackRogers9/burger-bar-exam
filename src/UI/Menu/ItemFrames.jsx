@@ -1,12 +1,16 @@
 import { nanoid } from 'nanoid';
+import { HeaderH3 } from '../ReusableComponents/Headers/Headers';
+import './ItemFrames.css';
+
+const methodAndHeaders = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+};
 
 export default function ItemFrame({ items, location, getItemsInBasket }) {
     const addToBasket = async (item) => {
-        console.log(item);
-
         const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            ...methodAndHeaders,
             body: JSON.stringify(item),
         };
 
@@ -18,8 +22,7 @@ export default function ItemFrame({ items, location, getItemsInBasket }) {
 
     const removeFromBasket = async (item) => {
         const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            ...methodAndHeaders,
             body: JSON.stringify(item),
         };
 
@@ -33,34 +36,30 @@ export default function ItemFrame({ items, location, getItemsInBasket }) {
         console.log(body);
     };
 
-    return items.map((item) => {
-        const { name, displayPrice } = item;
+    return items.map((item) => (
+        <div className="item-frame" key={`${item.name}-${nanoid()}`}>
+            <HeaderH3 className="option-name" text={item.name} />
+            <HeaderH3 className="option-price" text={item.displayPrice} />
 
-        return (
-            <div className="item-frame" key={`${name}-${nanoid()}`}>
-                <h3 className="option-name"> {name} </h3>
-                <h3 className="option-price"> {displayPrice} </h3>
+            {location === 'menu' && (
+                <button
+                    type="button"
+                    className="change-basket-button"
+                    onClick={() => addToBasket(item)}
+                >
+                    Add to Basket
+                </button>
+            )}
 
-                {location === 'menu' && (
-                    <button
-                        type="button"
-                        className="menu-add-button"
-                        onClick={() => addToBasket(item)}
-                    >
-                        Add to Basket
-                    </button>
-                )}
-
-                {location === 'basket' && (
-                    <button
-                        type="button"
-                        className="add-button"
-                        onClick={() => removeFromBasket(item)}
-                    >
-                        Remove from Basket
-                    </button>
-                )}
-            </div>
-        );
-    });
+            {location === 'basket' && (
+                <button
+                    type="button"
+                    className="change-basket-button"
+                    onClick={() => removeFromBasket(item)}
+                >
+                    Remove from Basket
+                </button>
+            )}
+        </div>
+    ));
 }

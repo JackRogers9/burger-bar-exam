@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+
+import { HeaderH3 } from '../ReusableComponents/Headers/Headers';
 import shoppingCart from '../Images/ShoppingCart.jpg';
 import './Header.css';
 
@@ -11,13 +13,12 @@ export default function Header() {
             const requestOptions = {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    token: localStorage.token,
-                }),
+                body: JSON.stringify({ token: localStorage.token }),
             };
 
             const response = await fetch('/getUserDetails', requestOptions);
             const body = await response.json();
+
             toggleLogin(body[0]);
         }
     };
@@ -29,16 +30,16 @@ export default function Header() {
     return (
         <div className="header">
             <Link to="/menu" className="header-link">
-                <h3 className="header-title"> Menu </h3>
+                <HeaderH3 className="header-title" text="Menu" />
             </Link>
 
             {userLoggedIn ? (
                 <Link to="/account-details" className="header-link">
-                    <h3 className="header-title"> Account Details </h3>
+                    <HeaderH3 className="header-title" text="Account Details" />
                 </Link>
             ) : (
                 <Link to="/register" className="header-link">
-                    <h3 className="header-title"> Register </h3>
+                    <HeaderH3 className="header-title" text="Register" />
                 </Link>
             )}
 

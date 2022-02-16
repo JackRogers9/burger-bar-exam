@@ -1,24 +1,39 @@
-import items from './MenuOptions.json';
+import ComponentPage from '../ReusableComponents/ComponentPage/ComponentPage';
+import ComponentBody from '../ReusableComponents/ComponentBody/ComponentBody';
+import { HeaderH2 } from '../ReusableComponents/Headers/Headers';
+import options from './MenuOptions.json';
 import ItemFrame from './ItemFrames';
 import './Menu.css';
 
+const menuSections = [
+    {
+        items: options[0],
+        subheader: 'Burgers',
+        key: 'burgers-row',
+    },
+    {
+        items: options[1],
+        subheader: 'Sides',
+        key: 'sides-row',
+    },
+    {
+        items: options[2],
+        subheader: 'Drinks',
+        key: 'drinks-row',
+    },
+];
+
 export default function Menu() {
     return (
-        <div className="menu-page">
-            <div className="menu-body">
-                <h1 className="menu-header"> Menu </h1>
-
-                <div className="section-seperator" />
-
-                <h2 className="menu-subheader"> Burgers </h2>
-                <ItemFrame items={items[0]} location="menu" />
-
-                <h2 className="menu-subheader"> Sides </h2>
-                <ItemFrame items={items[1]} location="menu" />
-
-                <h2 className="menu-subheader"> Drinks </h2>
-                <ItemFrame items={items[2]} location="menu" />
-            </div>
-        </div>
+        <ComponentPage>
+            <ComponentBody header="Menu">
+                {menuSections.map(({ items, subheader, key }) => (
+                    <div key={key}>
+                        <HeaderH2 className="menu-subheader" text={subheader} />
+                        <ItemFrame items={items} location="menu" />
+                    </div>
+                ))}
+            </ComponentBody>
+        </ComponentPage>
     );
 }

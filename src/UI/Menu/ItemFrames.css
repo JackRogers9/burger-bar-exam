@@ -1,42 +1,38 @@
-.previous-order-item {
-    display: flex;
-    flex-direction: column;
-}
-
-.previous-order-summary {
+.item-frame {
     display: flex;
     flex-direction: row;
     align-items: center;
+    height: 7.5vh;
     border: 2px solid rgb(188, 65, 35);
 }
 
-.previous-order-date {
-    margin: 0;
+.option-name {
+    width: 60%;
+    padding: 0 2.5% 0 2.5%;
     color: rgb(255, 255, 255);
     font-family: Arial, Helvetica, sans-serif;
-    cursor: default;
 }
 
-.previous-order-text {
+.option-price {
     width: 20%;
-    padding: 5px;
+    padding: 0 2.5% 0 2.5%;
     color: rgb(255, 255, 255);
     font-family: Arial, Helvetica, sans-serif;
-    cursor: default;
 }
 
-.previous-order-button {
-    width: 125px;
+.change-basket-button {
+    display: flex;
+    align-items: center;
+    height: 75%;
+    width: 20%;
+    margin-right: 2.5%;
     border-radius: 20px;
-    margin: 0 auto 0 auto;
     padding: 15px 32px;
     border: none;
     background-color: rgb(188, 65, 35);
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: bold;
+    font-size: 14px;
     font-family: Arial, Helvetica, sans-serif;
-    color: rgb(11, 23, 42);
+    font-weight: bold;
+    color: rgb(255, 255, 255);
     cursor: pointer;
 }

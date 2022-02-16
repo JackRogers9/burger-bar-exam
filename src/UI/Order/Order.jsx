@@ -1,18 +1,24 @@
 import { useState, useEffect } from 'react';
 import { TailSpin } from 'react-loader-spinner';
 import { useNavigate } from 'react-router-dom';
+
+import ComponentBody from '../ReusableComponents/ComponentBody/ComponentBody';
+import { HeaderH2, HeaderH3, HeaderSeperator } from '../ReusableComponents/Headers/Headers';
 import './Order.css';
 
 export const googleMapsUrl =
     'https://www.google.co.uk/maps/place/70+Regent+St,+Cheltenham+GL50+1HA/@51.9003958,-2.0767852,17z/data=!3m1!4b1!4m5!3m4!1s0x48711b9708de4501:0x822d744420fcb1ca!8m2!3d51.9003925!4d-2.0745965';
+
+const methodAndHeaders = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+};
 
 export default function Order() {
     const [totalCost, updateCost] = useState(0);
     const [clicked, toggleClick] = useState(false);
     const [ordered, clickOrder] = useState(false);
     const [allItems, addItems] = useState([]);
-
-    const navigate = useNavigate();
 
     const calculateCost = (items) => {
         updateCost(0);
@@ -24,8 +30,7 @@ export default function Order() {
 
     const getItemsInBasket = async () => {
         const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            ...methodAndHeaders,
             body: JSON.stringify(),
         };
 
@@ -38,8 +43,7 @@ export default function Order() {
 
     const addToPreviousOrders = async (userID) => {
         const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            ...methodAndHeaders,
             body: JSON.stringify({ userID, items: allItems, totalCost }),
         };
 
@@ -51,8 +55,7 @@ export default function Order() {
 
     const removeAllItemsFromBasket = async () => {
         const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            ...methodAndHeaders,
             body: JSON.stringify(),
         };
 
@@ -63,31 +66,25 @@ export default function Order() {
     };
 
     const getDetails = async () => {
-        console.log(localStorage.token);
-
         if (localStorage.token) {
             const requestOptions = {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    token: localStorage.token,
-                }),
+                ...methodAndHeaders,
+                body: JSON.stringify({ token: localStorage.token }),
             };
 
             const response = await fetch('/getUserDetails', requestOptions);
             const body = await response.json();
 
-            console.log(body);
-
             addToPreviousOrders(body[0].userID);
         }
     };
 
-    function delay(ms) {
-        return new Promise((resolve) => {
+    const delay = async (ms) =>
+        new Promise((resolve) => {
             setTimeout(resolve, ms);
         });
-    }
+
+    const navigate = useNavigate();
 
     const orderConfirmation = async () => {
         clickOrder(true);
@@ -105,20 +102,18 @@ export default function Order() {
     const formatPrice = new Intl.NumberFormat(undefined, { style: 'currency', currency: 'GBP' });
 
     return (
-        <div className="order-summary">
-            <h1 className="order-header"> Order Summary </h1>
-            <h2 className="total-price-header">
-                {`Total Price : ${formatPrice.format(totalCost)}`}
-            </h2>
+        <ComponentBody header="Order Summary">
+            <HeaderH2
+                className="total-price-header"
+                text={`Total Price : ${formatPrice.format(totalCost)}`}
+            />
 
-            <div className="section-seperator" />
-
-            <h2 className="order-subheader"> Delivery Options </h2>
+            <HeaderH2 className="order-subheader" text="Delivery Options" />
 
             <button
                 type="button"
-                className={clicked ? 'delivery-button-clicked' : 'delivery-button'}
                 onClick={() => toggleClick(!clicked)}
+                className={clicked ? 'delivery-button-clicked' : 'delivery-button'}
             >
                 Collection
             </button>
@@ -138,7 +133,7 @@ export default function Order() {
                 Home Delivery (Coming Soon)
             </button>
 
-            <div className="section-seperator" />
+            <HeaderSeperator />
 
             <button type="button" className="submit-button" onClick={orderConfirmation}>
                 Order
@@ -147,9 +142,9 @@ export default function Order() {
             {ordered && (
                 <div className="loading-message">
                     <TailSpin color="#485c5c" height={40} width={40} />
-                    <h3 className="card-details-message"> Loading card details... </h3>
+                    <HeaderH3 className="card-details-message" text="Loading card details..." />
                 </div>
             )}
-        </div>
+        </ComponentBody>
     );
 }

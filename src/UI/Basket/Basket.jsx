@@ -1,7 +1,15 @@
 import { useState, useEffect } from 'react';
+
+import ComponentPage from '../ReusableComponents/ComponentPage/ComponentPage';
+import ComponentBody from '../ReusableComponents/ComponentBody/ComponentBody';
 import BasketMessages from './BasketMessages';
 import ItemFrame from '../Menu/ItemFrames';
 import './Basket.css';
+
+const methodAndHeaders = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+};
 
 export default function Basket() {
     const [allItems, addItems] = useState([]);
@@ -11,19 +19,15 @@ export default function Basket() {
     const [userLoggedIn, toggleLogin] = useState(false);
 
     const getDetails = async () => {
-        console.log(localStorage.token);
-
         if (localStorage.token) {
             const requestOptions = {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    token: localStorage.token,
-                }),
+                ...methodAndHeaders,
+                body: JSON.stringify({ token: localStorage.token }),
             };
 
             const response = await fetch('/getUserDetails', requestOptions);
             const body = await response.json();
+
             toggleLogin(body[0]);
         }
     };
@@ -62,8 +66,7 @@ export default function Basket() {
 
     const getItemsInBasket = async () => {
         const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            ...methodAndHeaders,
             body: JSON.stringify(),
         };
 
@@ -78,48 +81,43 @@ export default function Basket() {
         getDetails();
     }, []);
 
+    const basketSections = [
+        {
+            items: burgers,
+            subheader: 'Burgers',
+            key: 'burgers-row-basket',
+        },
+        {
+            items: sides,
+            subheader: 'Sides',
+            key: 'sides-row-basket',
+        },
+        {
+            items: drinks,
+            subheader: 'Drinks',
+            key: 'drinks-row-basket',
+        },
+    ];
+
     return (
-        <div className="basket-page">
-            <div className="basket-body">
-                <h1 className="basket-header"> Basket </h1>
-
-                <div className="section-seperator" />
-
-                {burgers.length > 0 && (
-                    <>
-                        <h2 className="basket-subheader"> Burgers </h2>
-                        <ItemFrame
-                            items={burgers}
-                            location="basket"
-                            getItemsInBasket={getItemsInBasket}
-                        />
-                    </>
-                )}
-
-                {sides.length > 0 && (
-                    <>
-                        <h2 className="basket-subheader"> Sides </h2>
-                        <ItemFrame
-                            items={sides}
-                            location="basket"
-                            getItemsInBasket={getItemsInBasket}
-                        />
-                    </>
-                )}
-
-                {drinks.length > 0 && (
-                    <>
-                        <h2 className="basket-subheader"> Drinks </h2>
-                        <ItemFrame
-                            items={drinks}
-                            location="basket"
-                            getItemsInBasket={getItemsInBasket}
-                        />
-                    </>
+        <ComponentPage>
+            <ComponentBody header="Basket">
+                {basketSections.map(
+                    ({ items, subheader, key }) =>
+                        items.length > 0 && (
+                            <div key={key}>
+                                <h2 className="basket-subheader"> {subheader} </h2>
+                                <ItemFrame
+                                    items={items}
+                                    location="basket"
+                                    getItemsInBasket={getItemsInBasket}
+                                />
+                            </div>
+                        )
                 )}
 
                 <BasketMessages userLoggedIn={userLoggedIn} allItems={allItems} />
-            </div>
-        </div>
+            </ComponentBody>
+        </ComponentPage>
     );
 }

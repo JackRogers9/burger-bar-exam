@@ -1,6 +1,6 @@
+import ComponentBody from '../ReusableComponents/ComponentBody/ComponentBody';
 import Fields from '../InputFields/Fields';
 import loginFields from './Fields.json';
-import './Login.css';
 
 export default function Login() {
     const login = async () => {
@@ -10,10 +10,7 @@ export default function Login() {
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                email,
-                password,
-            }),
+            body: JSON.stringify({ email, password }),
         };
 
         const response = await fetch('/login', requestOptions);
@@ -29,14 +26,12 @@ export default function Login() {
     };
 
     return (
-        <div className="login-body">
-            <h1 className="login-title"> Login </h1>
-
+        <ComponentBody header="Login">
             <Fields fieldInformation={loginFields} />
 
             <button type="button" className="submit-button" onClick={login}>
                 Log In
             </button>
-        </div>
+        </ComponentBody>
     );
 }

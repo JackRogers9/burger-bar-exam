@@ -1,0 +1,45 @@
+.empty-basket-message {
+    margin: 30px auto 0 auto;
+}
+
+.alert-text {
+    color: rgb(255, 255, 255);
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 30px auto 0 auto;
+}
+
+.order-link {
+    margin: 0 auto 0 auto;
+    text-decoration: none;
+}
+
+.menu-link {
+    width: fit-content;
+    margin: 20px auto 0 auto;
+    color: rgb(255, 255, 255);
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.link-row {
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto 0 auto;
+}
+
+.basket-link {
+    color: rgb(255, 255, 255);
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.basket-link:hover {
+    text-decoration: underline;
+}
+
+.link-seperator {
+    padding: 0 3px 0 3px;
+    color: rgb(255, 255, 255);
+}
