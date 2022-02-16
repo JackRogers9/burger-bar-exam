@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
 
+import ComponentBody from '../ReusableComponents/ComponentBody/ComponentBody';
+import { HeaderH3 } from '../ReusableComponents/Headers/Headers';
 import fieldInformation from './Fields.json';
 import Fields from '../InputFields/Fields';
 import GetDetails from './GetDetails';
 import './Register.css';
-import ComponentBody from '../ReusableComponents/ComponentBody/ComponentBody';
-import { HeaderH3 } from '../ReusableComponents/Headers/Headers';
 
 const methodAndHeaders = {
     method: 'POST',

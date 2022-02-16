@@ -1,0 +1,70 @@
+.home-body {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100vw;
+    margin-top: 10vh;
+}
+
+.text-column {
+    height: 50vh;
+    width: 500px;
+}
+
+.home-title {
+    margin-top: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: rgb(188, 65, 35);
+}
+
+.details-body {
+    display: flex;
+    justify-content: row;
+}
+
+.details-column {
+    width: 50%;
+}
+
+.details-header-row {
+    margin: 3vh 0 2vh 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.details-header {
+    margin: 3px 0 3px 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(188, 65, 35);
+}
+
+.details-text-row {
+    margin-bottom: 3vh;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(72, 92, 92);
+}
+
+.details-text {
+    margin: 3px 0 3px 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(255, 255, 255);
+}
+
+.phone-number-row {
+    margin: 3vh 0 3vh 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(255, 255, 255);
+}
+
+.image-column {
+    display: flex;
+    justify-content: flex-end;
+    height: 50vh;
+    width: 500px;
+}
+
+.burger-image {
+    height: 350px;
+}

@@ -2,12 +2,10 @@ import { useState, useEffect } from 'react';
 import { TailSpin } from 'react-loader-spinner';
 import { useNavigate } from 'react-router-dom';
 
-import ComponentBody from '../ReusableComponents/ComponentBody/ComponentBody';
 import { HeaderH2, HeaderH3, HeaderSeperator } from '../ReusableComponents/Headers/Headers';
+import ComponentBody from '../ReusableComponents/ComponentBody/ComponentBody';
+import ExternalLink from '../ReusableComponents/ExternalLink/ExternalLink';
 import './Order.css';
-
-export const googleMapsUrl =
-    'https://www.google.co.uk/maps/place/70+Regent+St,+Cheltenham+GL50+1HA/@51.9003958,-2.0767852,17z/data=!3m1!4b1!4m5!3m4!1s0x48711b9708de4501:0x822d744420fcb1ca!8m2!3d51.9003925!4d-2.0745965';
 
 const methodAndHeaders = {
     method: 'POST',
@@ -119,14 +117,10 @@ export default function Order() {
             </button>
 
             {clicked && (
-                <a
-                    href={googleMapsUrl}
-                    target="_blank"
-                    className="maps-link"
-                    rel="noopener noreferrer"
-                >
-                    Click here to see the restaurant on Google Maps
-                </a>
+                <ExternalLink
+                    className="google-maps-link-order"
+                    text="Click here to see the restaurant on Google Maps"
+                />
             )}
 
             <button type="button" className="delivery-button-disabled" disabled>
