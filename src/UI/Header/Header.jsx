@@ -44,7 +44,12 @@ export default function Header() {
             )}
 
             <Link to="/basket" className="header-link">
-                <img src={shoppingCart} alt="Basket" className="shopping-cart" />
+                <img
+                    src={shoppingCart}
+                    alt="Basket"
+                    className="shopping-cart"
+                    data-testid="shopping-cart"
+                />
             </Link>
         </div>
     );

@@ -3,3 +3,11 @@
     color: rgb(188, 65, 35);
     font-family: Arial, Helvetica, sans-serif;
 }
+
+@media (max-width: 500px) {
+    .basket-subheader {
+        margin: 30px 0 10px 5px;
+        color: rgb(188, 65, 35);
+        font-family: Arial, Helvetica, sans-serif;
+    }
+}

@@ -51,7 +51,12 @@ export default function Homepage() {
             </div>
 
             <div className="image-column">
-                <img src={Burger} alt="Burger and Beer" className="burger-image" />
+                <img
+                    src={Burger}
+                    alt="Burger and Beer"
+                    className="burger-image"
+                    data-testid="burger-image"
+                />
             </div>
         </div>
     );

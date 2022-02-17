@@ -28,3 +28,22 @@
     margin: 0 auto 0 auto;
     cursor: pointer;
 }
+
+@media (max-width: 850px) {
+    .header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        height: 10vh;
+    }
+
+    .header-title {
+        width: 30vw;
+        margin: 0 auto 0 auto;
+        text-decoration: none;
+        color: rgb(255, 255, 255);
+        font-family: Arial, Helvetica, sans-serif;
+        cursor: pointer;
+    }
+} ;

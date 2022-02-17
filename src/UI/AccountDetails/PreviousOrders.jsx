@@ -47,28 +47,32 @@ export default function PreviousOrder({ date, time, displayPrice, items }) {
     return (
         <div className="previous-order-item">
             <div className="previous-order-summary">
-                <div className="previous-order-text">
-                    <HeaderH3 text={date} className="previous-order-date" />
-                    <HeaderH3 text={time} className="previous-order-date" />
+                <div className="previous-order-information">
+                    <div className="previous-order-text">
+                        <HeaderH3 text={date} className="previous-order-date" />
+                        <HeaderH3 text={time} className="previous-order-date" />
+                    </div>
+                    <HeaderH3 text={displayPrice} className="previous-order-text" />
+                    <HeaderH3 text={items.length} className="previous-order-text" />
                 </div>
-                <HeaderH3 text={displayPrice} className="previous-order-text" />
-                <HeaderH3 text={items.length} className="previous-order-text" />
 
-                <button
-                    type="button"
-                    className="previous-order-button"
-                    onClick={() => toggleExpand(!expandOrder)}
-                >
-                    {expandOrder ? 'Shrink' : 'Expand'}
-                </button>
+                <div className="previous-order-button-row">
+                    <button
+                        type="button"
+                        className="previous-order-button"
+                        onClick={() => toggleExpand(!expandOrder)}
+                    >
+                        {expandOrder ? 'Shrink' : 'Expand'}
+                    </button>
 
-                <button
-                    type="button"
-                    className="previous-order-button"
-                    onClick={() => addPreviousOrderToBasket(items)}
-                >
-                    Reorder
-                </button>
+                    <button
+                        type="button"
+                        className="previous-order-button"
+                        onClick={() => addPreviousOrderToBasket(items)}
+                    >
+                        Reorder
+                    </button>
+                </div>
             </div>
 
             {expandOrder && <ItemFrames items={items} />}

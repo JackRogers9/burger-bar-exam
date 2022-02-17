@@ -52,3 +52,49 @@
 .field-input-date:focus {
     outline: 2px solid rgb(188, 65, 35);
 }
+
+@media (max-width: 500px) {
+    .field-input {
+        width: 55%;
+        margin: 0 10px 0 0;
+        padding: 12px 20px;
+        border-radius: 4px;
+        border: 1px solid rgb(204, 204, 204);
+    }
+
+    .react-datepicker__input-container {
+        width: 242px;
+        float: right;
+        margin: 0;
+    }
+
+    .react-datepicker-wrapper {
+        width: 242px;
+        float: right;
+        margin: 0;
+    }
+
+    .field-input-date {
+        width: 200px;
+        margin: auto;
+        padding: 12px 20px;
+        border-radius: 4px;
+        border: 1px solid rgb(204, 204, 204);
+    }
+
+    .field-label {
+        width: 35%;
+        margin-left: 10px;
+        color: rgb(255, 255, 255);
+        font-family: Arial, Helvetica, sans-serif;
+        cursor: default;
+    }
+
+    .field-label-date {
+        width: 128px;
+        margin-left: 10px;
+        color: rgb(255, 255, 255);
+        font-family: Arial, Helvetica, sans-serif;
+        cursor: default;
+    }
+}
