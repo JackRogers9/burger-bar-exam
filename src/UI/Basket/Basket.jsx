@@ -1,3 +1,5 @@
+/* eslint-disable no-loop-func */
+/* eslint-disable array-callback-return */
 import { useState, useEffect } from 'react';
 
 import ComponentPage from '../ReusableComponents/ComponentPage/ComponentPage';
@@ -18,7 +20,7 @@ export default function Basket() {
     const [drinks, addDrinks] = useState([]);
     const [userLoggedIn, toggleLogin] = useState(false);
 
-    const getDetails = async () => {
+    const getUserDetails = async () => {
         if (localStorage.token) {
             const requestOptions = {
                 ...methodAndHeaders,
@@ -64,6 +66,43 @@ export default function Basket() {
         });
     };
 
+    const countBurgers = (body) => {
+        let count = 0;
+
+        body.forEach((item) => {
+            if (item.category === 'Burgers') {
+                count += 1;
+            }
+        });
+
+        return count;
+    };
+
+    const updateChips = (body) => {
+        let burgersLeft = countBurgers(body);
+
+        const updatedItems = body.map((item) => {
+            const { id, name, category } = item;
+
+            if (burgersLeft > 0) {
+                if (name === 'Chips') {
+                    burgersLeft -= 1;
+                    return {
+                        id,
+                        category,
+                        name: 'Chips (Bought with burger)',
+                        displayPrice: '£1.00',
+                        price: 1,
+                    };
+                }
+                return item;
+            }
+            return item;
+        });
+
+        checkItemsInBasket(updatedItems);
+    };
+
     const getItemsInBasket = async () => {
         const requestOptions = {
             ...methodAndHeaders,
@@ -73,12 +112,12 @@ export default function Basket() {
         const response = await fetch('/getItemsInBasket', requestOptions);
         const body = await response.json();
 
-        checkItemsInBasket(body);
+        updateChips(body);
     };
 
     useEffect(() => {
         getItemsInBasket();
-        getDetails();
+        getUserDetails();
     }, []);
 
     const basketSections = [
