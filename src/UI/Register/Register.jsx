@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import ComponentPage from '../ReusableComponents/ComponentPage/ComponentPage';
 import ComponentBody from '../ReusableComponents/ComponentBody/ComponentBody';
 import { HeaderH3 } from '../ReusableComponents/Headers/Headers';
+import CardDetails from '../CardDetails/CardDetails';
 import fieldInformation from './Fields.json';
 import Fields from '../InputFields/Fields';
 import GetDetails from './GetDetails';
 import './Register.css';
-import CardDetails from '../CardDetails/CardDetails';
 
 const methodAndHeaders = {
     method: 'POST',

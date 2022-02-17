@@ -1,4 +1,3 @@
-/* eslint-disable prefer-template */
 /* eslint-disable no-unused-vars */
 const { hashSync, compareSync } = require("bcrypt");
 const { urlencoded, json } = require("body-parser");
@@ -23,9 +22,6 @@ const createTables = () => {
             firstName VARCHAR(255),
             lastName VARCHAR(255),
             password VARCHAR(255),
-            postcode VARCHAR(255),
-            houseNumber INT,
-            roadName VARCHAR(255),
             primary key (id)
         );`
     );
@@ -83,8 +79,7 @@ app.use(urlencoded({ extended: true }));
 app.use(json());
 
 app.post("/registerNewUser", async (request, response) => {
-    const { userID, email, firstName, lastName, password, postcode, houseNumber, roadName } =
-        request.body;
+    const { userID, email, firstName, lastName, password } = request.body;
 
     let errorMessage = "";
 
@@ -104,17 +99,8 @@ app.post("/registerNewUser", async (request, response) => {
 
     if (errorMessage === "") {
         connection.query(
-            "INSERT into accounts (userID, email, firstName, lastName, password, postcode, houseNumber, roadName) VALUES(?, ?, ?, ?, ?, ?, ?, ?)",
-            [
-                userID,
-                email,
-                firstName,
-                lastName,
-                hashSync(password, 10),
-                postcode,
-                houseNumber,
-                roadName,
-            ],
+            "INSERT into accounts (userID, email, firstName, lastName, password) VALUES(?, ?, ?, ?, ?)",
+            [userID, email, firstName, lastName, hashSync(password, 10)],
             (error, results) => {
                 if (error) console.log(error);
 

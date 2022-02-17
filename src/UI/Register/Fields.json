@@ -24,24 +24,6 @@
         "className": "field-label"
     },
     {
-        "label": "Postcode",
-        "placeholder": "Enter your postcode...",
-        "id": "postcode",
-        "className": "field-label"
-    },
-    {
-        "label": "House Number",
-        "placeholder": "Enter your house number...",
-        "id": "houseNumber",
-        "className": "field-label"
-    },
-    {
-        "label": "Road Name",
-        "placeholder": "Enter your road name...",
-        "id": "roadName",
-        "className": "field-label"
-    },
-    {
         "label": "Date of Birth",
         "placeholder": "Click to select date of birth...",
         "id": "dob",
