@@ -29,7 +29,12 @@ export default function Login() {
         <ComponentBody header="Login">
             <Fields fieldInformation={loginFields} />
 
-            <button type="button" className="submit-button" onClick={login}>
+            <button
+                type="button"
+                className="submit-button"
+                data-testid="login-button"
+                onClick={login}
+            >
                 Log In
             </button>
         </ComponentBody>

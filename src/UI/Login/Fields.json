@@ -3,12 +3,14 @@
         "label": "Email",
         "placeholder": "Enter your email...",
         "id": "loginEmail",
+        "dataTestId": "login-email",
         "className": "field-label"
     },
     {
         "label": "Password",
         "placeholder": "Enter your password...",
         "id": "loginPassword",
+        "dataTestId": "login-password",
         "className": "field-label"
     }
 ]

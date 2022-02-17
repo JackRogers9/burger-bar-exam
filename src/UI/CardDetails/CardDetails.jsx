@@ -75,6 +75,7 @@ export default function CardDetails() {
             maxLength: '16',
             id: 'cardNumber',
             errorName: 'Card Number',
+            dataTestId: 'card-number-field',
             placeholder: 'Card number',
             isValid: cardNumberIsValid,
             onChange: validateCardNumber,
@@ -83,6 +84,7 @@ export default function CardDetails() {
             maxLength: '6',
             id: 'sortcode',
             errorName: 'Sort Code',
+            dataTestId: 'sort-code-field',
             placeholder: 'Sort code',
             isValid: sortCodeIsValid,
             onChange: validateSortcode,
@@ -91,6 +93,7 @@ export default function CardDetails() {
             maxLength: '3',
             id: 'cvc',
             errorName: 'CVC',
+            dataTestId: 'cvc-field',
             placeholder: 'CVC',
             isValid: CVCIsValid,
             onChange: validateCVC,
@@ -111,7 +114,8 @@ export default function CardDetails() {
 
             <div className="card-input-column">
                 {cardDetails.map((details) => {
-                    const { errorName, id, placeholder, isValid, onChange, maxLength } = details;
+                    const { errorName, id, placeholder, isValid, onChange, maxLength, dataTestId } =
+                        details;
 
                     return (
                         <div key={id} className="card-number-row">
@@ -126,6 +130,7 @@ export default function CardDetails() {
                             ) : (
                                 <input
                                     id={id}
+                                    data-testid={dataTestId}
                                     maxLength={maxLength}
                                     className="card-input"
                                     placeholder={placeholder}

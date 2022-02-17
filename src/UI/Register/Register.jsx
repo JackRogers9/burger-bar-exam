@@ -59,7 +59,12 @@ export default function Register() {
 
                 <CardDetails />
 
-                <button type="button" className="submit-button" onClick={registerNewUser}>
+                <button
+                    type="button"
+                    className="submit-button"
+                    data-testid="register-button"
+                    onClick={registerNewUser}
+                >
                     Submit
                 </button>
 

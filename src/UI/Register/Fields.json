@@ -3,25 +3,29 @@
         "label": "Email",
         "placeholder": "Enter your email...",
         "id": "registerEmail",
-        "className": "field-label"
+        "className": "field-label",
+        "dataTestId": "register-email"
     },
     {
         "label": "First Name",
         "placeholder": "Enter your first name...",
         "id": "firstName",
-        "className": "field-label"
+        "className": "field-label",
+        "dataTestId": "first-name"
     },
     {
         "label": "Last Name",
         "placeholder": "Enter your last name...",
         "id": "lastName",
-        "className": "field-label"
+        "className": "field-label",
+        "dataTestId": "last-name"
     },
     {
         "label": "Password",
         "placeholder": "Enter your password...",
         "id": "registerPassword",
-        "className": "field-label"
+        "className": "field-label",
+        "dataTestId": "register-password"
     },
     {
         "label": "Date of Birth",

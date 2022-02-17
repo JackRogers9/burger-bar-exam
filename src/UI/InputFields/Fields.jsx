@@ -8,7 +8,7 @@ import './Fields.css';
 export default function Fields({ fieldInformation }) {
     const [startDate, setStartDate] = useState(new Date());
 
-    return fieldInformation.map(({ label, placeholder, id, className }) => (
+    return fieldInformation.map(({ label, placeholder, id, className, dataTestId }) => (
         <div className="field-body" key={id}>
             <HeaderH4 className={className} text={label} />
 
@@ -24,7 +24,13 @@ export default function Fields({ fieldInformation }) {
                     onChange={(date) => setStartDate(date)}
                 />
             ) : (
-                <input placeholder={placeholder} className="field-input" id={id} required />
+                <input
+                    id={id}
+                    required
+                    placeholder={placeholder}
+                    data-testid={dataTestId}
+                    className="field-input"
+                />
             )}
         </div>
     ));
