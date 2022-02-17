@@ -14,8 +14,12 @@ export default function Fields({ fieldInformation }) {
 
             {id === 'dob' ? (
                 <DatePicker
+                    showYearDropdown
+                    scrollableYearDropdown
+                    yearDropdownItemNumber={100}
                     selected={startDate}
                     dateFormat="dd/MM/yyyy"
+                    dateFormatCalendar="MMMM"
                     className="field-input-date"
                     onChange={(date) => setStartDate(date)}
                 />

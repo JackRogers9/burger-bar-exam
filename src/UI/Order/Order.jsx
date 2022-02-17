@@ -63,7 +63,7 @@ export default function Order() {
         console.log(body);
     };
 
-    const getDetails = async () => {
+    const getUserDetails = async () => {
         if (localStorage.token) {
             const requestOptions = {
                 ...methodAndHeaders,
@@ -86,7 +86,7 @@ export default function Order() {
 
     const orderConfirmation = async () => {
         clickOrder(true);
-        getDetails();
+        getUserDetails();
         removeAllItemsFromBasket();
 
         await delay(2000);
