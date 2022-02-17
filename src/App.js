@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import AccountDetails from './UI/AccountDetails/AccountDetails';
+import PreviousOrders from './UI/PreviousOrders/PreviousOrders';
 import OrderConfirmation from './UI/Order/Confirmation';
 import Register from './UI/Register/Register';
 import Header from './UI/Header/Header';
@@ -17,7 +17,7 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login />} />
-                <Route path="/account-details" element={<AccountDetails />} />
+                <Route path="/previous-orders" element={<PreviousOrders />} />
                 <Route path="/menu" element={<Menu />} />
                 <Route path="/basket" element={<Basket />} />
                 <Route path="/order" element={<Order />} />

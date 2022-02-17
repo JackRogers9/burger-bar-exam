@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import ComponentBody from '../ReusableComponents/ComponentBody/ComponentBody';
 import ComponentPage from '../ReusableComponents/ComponentPage/ComponentPage';
 import { HeaderH2, HeaderH3 } from '../ReusableComponents/Headers/Headers';
-import PreviousOrder from './PreviousOrders';
-import './AccountDetails.css';
+import OrderInformation from './OrderInformation';
+import './PreviousOrders.css';
 
 const price = new Intl.NumberFormat(undefined, { style: 'currency', currency: 'GBP' });
 
@@ -23,7 +24,7 @@ const methodAndHeaders = {
     headers: { 'Content-Type': 'application/json' },
 };
 
-export default function AccountDetails() {
+export default function PreviousOrders() {
     const [previousOrders, addPreviousOrders] = useState([]);
 
     const getPreviousOrders = async (userID) => {
@@ -55,11 +56,10 @@ export default function AccountDetails() {
 
     return (
         <ComponentPage>
-            <ComponentBody header="Account Details">
-                <HeaderH2 className="subheader" text="Previous Orders" />
-
-                {previousOrders.length > 0 && (
+            <ComponentBody header="Previous Orders">
+                {previousOrders.length > 0 ? (
                     <>
+                        <HeaderH2 className="subheader" text="Previous Orders" />
                         <div className="column-headers-row">
                             <HeaderH3 text="Order Date" className="column-headers" />
                             <HeaderH3 text="Order Price" className="column-headers" />
@@ -73,7 +73,7 @@ export default function AccountDetails() {
                             const [date, time] = getDateAndTime(orderDate);
 
                             return (
-                                <PreviousOrder
+                                <OrderInformation
                                     date={date}
                                     time={time}
                                     items={orderItems}
@@ -83,7 +83,25 @@ export default function AccountDetails() {
                             );
                         })}
                     </>
+                ) : (
+                    <>
+                        <HeaderH3 text="You have no previous orders." className="subheader" />
+                        <Link to="/menu" className="browse-menu-link">
+                            <HeaderH3 text="Click here to browse our menu." />
+                        </Link>
+                    </>
                 )}
+
+                <button
+                    type="button"
+                    className="submit-button"
+                    onClick={() => {
+                        localStorage.removeItem('token');
+                        window.location = '/';
+                    }}
+                >
+                    Logout
+                </button>
             </ComponentBody>
         </ComponentPage>
     );

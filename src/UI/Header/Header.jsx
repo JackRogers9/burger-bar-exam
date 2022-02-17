@@ -34,8 +34,8 @@ export default function Header() {
             </Link>
 
             {userLoggedIn ? (
-                <Link to="/account-details" className="header-link">
-                    <HeaderH3 className="header-title" text="Account Details" />
+                <Link to="/previous-orders" className="header-link">
+                    <HeaderH3 className="header-title" text="Previous Orders" />
                 </Link>
             ) : (
                 <Link to="/register" className="header-link">

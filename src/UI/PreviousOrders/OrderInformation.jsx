@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { HeaderH3 } from '../ReusableComponents/Headers/Headers';
 import ItemFrames from '../Menu/ItemFrames';
-import './PreviousOrders.css';
+import './OrderInformation.css';
 
 const methodAndHeaders = {
     method: 'POST',
@@ -41,7 +41,7 @@ const addPreviousOrderToBasket = (items) => {
     });
 };
 
-export default function PreviousOrder({ date, time, displayPrice, items }) {
+export default function OrderInformation({ date, time, displayPrice, items }) {
     const [expandOrder, toggleExpand] = useState(false);
 
     return (
