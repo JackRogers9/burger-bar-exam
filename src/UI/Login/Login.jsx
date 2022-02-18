@@ -16,9 +16,7 @@ export default function Login() {
         const response = await fetch('/login', requestOptions);
         const body = await response.json();
 
-        if (body.message) {
-            console.log(body.message);
-        } else {
+        if (!body.message) {
             localStorage.setItem('token', body.token);
             window.location = '/';
         }
