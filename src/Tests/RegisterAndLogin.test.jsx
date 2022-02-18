@@ -64,16 +64,6 @@ describe('Register: ', () => {
         });
     };
 
-    const login = () => {
-        render(
-            <Router>
-                <Login />
-            </Router>
-        );
-
-        returnInputFieldValues(loginFieldValues);
-    };
-
     it('Redirects to the login page after registering', () => {
         render(
             <Router>
@@ -93,7 +83,13 @@ describe('Register: ', () => {
     });
 
     it('Redirects to the home page after logging in', () => {
-        login();
+        render(
+            <Router>
+                <Login />
+            </Router>
+        );
+
+        returnInputFieldValues(loginFieldValues);
 
         waitFor(() => {
             expect(screen.findByText(selectors.homeHeader)).toBeInTheDocument();

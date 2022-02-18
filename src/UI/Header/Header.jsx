@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { HeaderH3 } from '../ReusableComponents/Headers/Headers';
-import shoppingCart from '../Images/ShoppingCart.jpg';
+import basketImage from '../Images/basket.png';
 import logo from '../Images/logo.png';
 import './Header.css';
 
@@ -18,7 +18,7 @@ export default function Header() {
             };
 
             const response = await fetch('/getUserDetails', requestOptions);
-            response.json((data) => toggleLogin(data[0]));
+            response.json().then((data) => toggleLogin(data[0]));
         }
     };
 
@@ -52,7 +52,7 @@ export default function Header() {
 
             <Link to="/basket" className="header-link">
                 <img
-                    src={shoppingCart}
+                    src={basketImage}
                     alt="Basket"
                     className="shopping-cart"
                     data-testid="shopping-cart"

@@ -12,6 +12,7 @@ export default function Fields({ fieldInformation }) {
                 onChange={onChange}
                 placeholder={placeholder}
                 data-testid={dataTestId}
+                type={label === 'Password' ? 'password' : ''}
                 className="field-input"
             />
         </div>

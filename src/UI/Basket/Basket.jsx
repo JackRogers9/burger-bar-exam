@@ -7,24 +7,11 @@ import BasketMessages from './BasketMessages';
 import ItemFrame from '../Menu/ItemFrames';
 import './Basket.css';
 
-export default function Basket() {
+export default function Basket({ userData }) {
     const [allItems, addItems] = useState([]);
     const [burgers, addBurgers] = useState([]);
     const [sides, addSides] = useState([]);
     const [drinks, addDrinks] = useState([]);
-    const [userLoggedIn, toggleLogin] = useState(false);
-
-    const getUserDetails = async () => {
-        if (localStorage.token) {
-            const requestOptions = {
-                ...methodAndHeaders,
-                body: JSON.stringify({ token: localStorage.token }),
-            };
-
-            const response = await fetch('/getUserDetails', requestOptions);
-            response.json().then((data) => toggleLogin(data[0]));
-        }
-    };
 
     const checkItemsInBasket = (items) => {
         addItems([]);
@@ -107,7 +94,6 @@ export default function Basket() {
 
     useEffect(() => {
         getItemsInBasket();
-        getUserDetails();
     }, []);
 
     const basketSections = [
@@ -145,7 +131,7 @@ export default function Basket() {
                         )
                 )}
 
-                <BasketMessages userLoggedIn={userLoggedIn} allItems={allItems} />
+                <BasketMessages userData={userData} allItems={allItems} />
             </ComponentBody>
         </ComponentPage>
     );

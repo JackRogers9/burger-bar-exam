@@ -12,7 +12,7 @@ import {
 } from '../ReusableComponents/Headers/Headers';
 import './Order.css';
 
-export default function Order() {
+export default function Order({ userData }) {
     const [totalCost, updateCost] = useState(0);
     const [clicked, toggleClick] = useState(false);
     const [ordered, clickOrder] = useState(false);
@@ -39,7 +39,9 @@ export default function Order() {
         });
     };
 
-    const addToPreviousOrders = async (userID) => {
+    const addToPreviousOrders = async () => {
+        const { userID } = userData;
+
         const requestOptions = {
             ...methodAndHeaders,
             body: JSON.stringify({ userID, items: allItems, totalCost }),
@@ -57,20 +59,6 @@ export default function Order() {
         await fetch('/removeAllFromBasket', requestOptions);
     };
 
-    const getUserDetails = async () => {
-        if (localStorage.token) {
-            const requestOptions = {
-                ...methodAndHeaders,
-                body: JSON.stringify({ token: localStorage.token }),
-            };
-
-            const response = await fetch('/getUserDetails', requestOptions);
-            response.json().then((data) => {
-                addToPreviousOrders(data[0].userID);
-            });
-        }
-    };
-
     const delay = async (ms) =>
         new Promise((resolve) => {
             setTimeout(resolve, ms);
@@ -80,7 +68,7 @@ export default function Order() {
 
     const orderConfirmation = async () => {
         clickOrder(true);
-        getUserDetails();
+        addToPreviousOrders();
         removeAllItemsFromBasket();
 
         await delay(2000);

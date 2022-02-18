@@ -1,7 +1,7 @@
 import ExternalLink from '../ReusableComponents/ExternalLink/ExternalLink';
 import { HeaderH1 } from '../ReusableComponents/Headers/Headers';
 import MultiLineText from './MultiLineText';
-import Burger from '../Images/Burger.jpg';
+import Burger from '../Images/burger.jpg';
 import './Home.css';
 
 export default function Homepage() {

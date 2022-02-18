@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { HeaderH2, HeaderH3 } from '../ReusableComponents/Headers/Headers';
 import './BasketMessages.css';
 
-export default function BasketMessages({ userLoggedIn, allItems }) {
+export default function BasketMessages({ userData, allItems }) {
     const [totalCost, updateCost] = useState(0);
 
     const calculateCost = () => {
@@ -36,14 +36,14 @@ export default function BasketMessages({ userLoggedIn, allItems }) {
                 </div>
             )}
 
-            {userLoggedIn && allItems.length > 0 && (
+            {userData && allItems.length > 0 && (
                 <>
                     <HeaderH2
                         className="total-price-header"
                         text={`Total Price : ${formatPrice.format(totalCost)}`}
                     />
 
-                    <Link to="/order" className="order-link">
+                    <Link className="order-link" to="/order" state={{ price: 'Test' }}>
                         <button type="button" className="submit-button">
                             Continue
                         </button>
@@ -51,7 +51,7 @@ export default function BasketMessages({ userLoggedIn, allItems }) {
                 </>
             )}
 
-            {!userLoggedIn && allItems.length > 0 && (
+            {!userData && allItems.length > 0 && (
                 <>
                     <HeaderH3
                         className="alert-text"

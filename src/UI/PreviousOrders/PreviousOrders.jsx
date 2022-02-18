@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { nanoid } from 'nanoid';
 
 import { HeaderH2, HeaderH3, methodAndHeaders } from '../ReusableComponents/Headers/Headers';
 import ComponentBody from '../ReusableComponents/ComponentBody/ComponentBody';
@@ -19,30 +20,19 @@ const getDateAndTime = (timeStamp) => {
     return [dateUkFormat, timestamp[0]];
 };
 
-export default function PreviousOrders() {
+export default function PreviousOrders({ userData }) {
     const [previousOrders, addPreviousOrders] = useState([]);
 
-    const getPreviousOrders = async (userID) => {
+    const getPreviousOrders = async () => {
+        const { userID } = userData;
         const requestOptions = { ...methodAndHeaders, body: JSON.stringify({ userID }) };
 
         const response = await fetch('/getPreviousOrders', requestOptions);
         response.json().then((data) => addPreviousOrders(data));
     };
 
-    const getUserDetails = async () => {
-        if (localStorage.token) {
-            const requestOptions = {
-                ...methodAndHeaders,
-                body: JSON.stringify({ token: localStorage.token }),
-            };
-
-            const response = await fetch('/getUserDetails', requestOptions);
-            response.json((data) => getPreviousOrders(data[0].userID));
-        }
-    };
-
     useEffect(() => {
-        getUserDetails();
+        getPreviousOrders();
     }, []);
 
     return (
@@ -68,7 +58,7 @@ export default function PreviousOrders() {
                                     date={date}
                                     time={time}
                                     items={orderItems}
-                                    key={`${date} ${time}`}
+                                    key={`${date}-${nanoid()}`}
                                     displayPrice={displayPrice}
                                 />
                             );

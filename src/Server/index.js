@@ -84,17 +84,16 @@ app.post("/registerNewUser", async (request, response) => {
     let errorMessage = "";
 
     if (!emailPattern.test(email)) {
-        errorMessage = "The email has an invalid format";
+        errorMessage = "InvalidEmail";
     }
     if (!namePattern.test(firstName)) {
-        errorMessage = "The first name is invalid";
+        errorMessage = "InvalidFirstName";
     }
     if (!namePattern.test(lastName)) {
-        errorMessage = "The last name is invalid";
+        errorMessage = "InvalidLastName";
     }
     if (!passwordPattern.test(password)) {
-        errorMessage =
-            "The password is invalid. It needs to be 8+ characters and include at least one upper and lower case character, a number, and a symbol.";
+        errorMessage = "InvalidPassword";
     }
 
     if (errorMessage === "") {
