@@ -40,7 +40,7 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/previous-orders" element={<PreviousOrders userData={userData} />} />
                 <Route path="/menu" element={<Menu />} />
-                <Route path="/basket" element={<Basket userData={userData} />} />
+                <Route path="/basket" element={<Basket />} />
                 <Route path="/order" element={<Order userData={userData} />} />
                 <Route
                     path="/order-confirmation"
