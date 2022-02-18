@@ -1,16 +1,16 @@
-import { useState, useEffect } from 'react';
 import { TailSpin } from 'react-loader-spinner';
 import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
-import { HeaderH2, HeaderH3, HeaderSeperator } from '../ReusableComponents/Headers/Headers';
 import ComponentBody from '../ReusableComponents/ComponentBody/ComponentBody';
 import ExternalLink from '../ReusableComponents/ExternalLink/ExternalLink';
+import {
+    HeaderH2,
+    HeaderH3,
+    HeaderSeperator,
+    methodAndHeaders,
+} from '../ReusableComponents/Headers/Headers';
 import './Order.css';
-
-const methodAndHeaders = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-};
 
 export default function Order() {
     const [totalCost, updateCost] = useState(0);
@@ -33,10 +33,10 @@ export default function Order() {
         };
 
         const response = await fetch('/getItemsInBasket', requestOptions);
-        const body = await response.json();
-
-        addItems(body);
-        calculateCost(body);
+        response.json().then((data) => {
+            addItems(data);
+            calculateCost(data);
+        });
     };
 
     const addToPreviousOrders = async (userID) => {
@@ -45,10 +45,7 @@ export default function Order() {
             body: JSON.stringify({ userID, items: allItems, totalCost }),
         };
 
-        const response = await fetch('/addToPreviousOrders', requestOptions);
-        const body = await response.json();
-
-        console.log(body);
+        await fetch('/addToPreviousOrders', requestOptions);
     };
 
     const removeAllItemsFromBasket = async () => {
@@ -57,10 +54,7 @@ export default function Order() {
             body: JSON.stringify(),
         };
 
-        const response = await fetch('/removeAllFromBasket', requestOptions);
-        const body = await response.json();
-
-        console.log(body);
+        await fetch('/removeAllFromBasket', requestOptions);
     };
 
     const getUserDetails = async () => {
@@ -71,9 +65,9 @@ export default function Order() {
             };
 
             const response = await fetch('/getUserDetails', requestOptions);
-            const body = await response.json();
-
-            addToPreviousOrders(body[0].userID);
+            response.json().then((data) => {
+                addToPreviousOrders(data[0].userID);
+            });
         }
     };
 

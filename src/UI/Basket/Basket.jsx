@@ -1,17 +1,11 @@
-/* eslint-disable no-loop-func */
-/* eslint-disable array-callback-return */
 import { useState, useEffect } from 'react';
 
 import ComponentPage from '../ReusableComponents/ComponentPage/ComponentPage';
 import ComponentBody from '../ReusableComponents/ComponentBody/ComponentBody';
+import { methodAndHeaders } from '../ReusableComponents/Headers/Headers';
 import BasketMessages from './BasketMessages';
 import ItemFrame from '../Menu/ItemFrames';
 import './Basket.css';
-
-const methodAndHeaders = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-};
 
 export default function Basket() {
     const [allItems, addItems] = useState([]);
@@ -28,9 +22,7 @@ export default function Basket() {
             };
 
             const response = await fetch('/getUserDetails', requestOptions);
-            const body = await response.json();
-
-            toggleLogin(body[0]);
+            response.json().then((data) => toggleLogin(data[0]));
         }
     };
 
@@ -110,9 +102,7 @@ export default function Basket() {
         };
 
         const response = await fetch('/getItemsInBasket', requestOptions);
-        const body = await response.json();
-
-        updateChips(body);
+        response.json().then((data) => updateChips(data));
     };
 
     useEffect(() => {

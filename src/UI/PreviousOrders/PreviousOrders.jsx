@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import { HeaderH2, HeaderH3, methodAndHeaders } from '../ReusableComponents/Headers/Headers';
 import ComponentBody from '../ReusableComponents/ComponentBody/ComponentBody';
 import ComponentPage from '../ReusableComponents/ComponentPage/ComponentPage';
-import { HeaderH2, HeaderH3 } from '../ReusableComponents/Headers/Headers';
 import OrderInformation from './OrderInformation';
 import './PreviousOrders.css';
 
@@ -19,11 +19,6 @@ const getDateAndTime = (timeStamp) => {
     return [dateUkFormat, timestamp[0]];
 };
 
-const methodAndHeaders = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-};
-
 export default function PreviousOrders() {
     const [previousOrders, addPreviousOrders] = useState([]);
 
@@ -31,9 +26,7 @@ export default function PreviousOrders() {
         const requestOptions = { ...methodAndHeaders, body: JSON.stringify({ userID }) };
 
         const response = await fetch('/getPreviousOrders', requestOptions);
-        const body = await response.json();
-
-        addPreviousOrders(body);
+        response.json().then((data) => addPreviousOrders(data));
     };
 
     const getUserDetails = async () => {
@@ -44,9 +37,7 @@ export default function PreviousOrders() {
             };
 
             const response = await fetch('/getUserDetails', requestOptions);
-            const body = await response.json();
-
-            getPreviousOrders(body[0].userID);
+            response.json((data) => getPreviousOrders(data[0].userID));
         }
     };
 

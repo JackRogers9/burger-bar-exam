@@ -1,11 +1,7 @@
 import { nanoid } from 'nanoid';
-import { HeaderH3 } from '../ReusableComponents/Headers/Headers';
-import './ItemFrames.css';
 
-const methodAndHeaders = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-};
+import { HeaderH3, methodAndHeaders } from '../ReusableComponents/Headers/Headers';
+import './ItemFrames.css';
 
 export default function ItemFrame({ items, location, getItemsInBasket }) {
     const addToBasket = async (item) => {
@@ -14,10 +10,7 @@ export default function ItemFrame({ items, location, getItemsInBasket }) {
             body: JSON.stringify(item),
         };
 
-        const response = await fetch('/addToBasket', requestOptions);
-        const body = await response.json();
-
-        console.log(body);
+        await fetch('/addToBasket', requestOptions);
     };
 
     const removeFromBasket = async (item) => {
@@ -32,8 +25,6 @@ export default function ItemFrame({ items, location, getItemsInBasket }) {
         if (body.success) {
             getItemsInBasket();
         }
-
-        console.log(body);
     };
 
     return items.map((item) => (
@@ -44,6 +35,7 @@ export default function ItemFrame({ items, location, getItemsInBasket }) {
             {location === 'menu' && (
                 <button
                     type="button"
+                    data-testid={`${item.name}-button`}
                     className="change-basket-button"
                     onClick={() => addToBasket(item)}
                 >
@@ -54,6 +46,7 @@ export default function ItemFrame({ items, location, getItemsInBasket }) {
             {location === 'basket' && (
                 <button
                     type="button"
+                    data-testid={`remove-${item.name}-button`}
                     className="change-basket-button"
                     onClick={() => removeFromBasket(item)}
                 >

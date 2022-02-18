@@ -1,3 +1,4 @@
+import 'react-datepicker/dist/react-datepicker.css';
 import DatePicker from 'react-datepicker';
 import { useState } from 'react';
 
@@ -20,9 +21,6 @@ const creditCardRegex = [
 ];
 
 export default function CardDetails() {
-    const [cardNumberIsValid, updateCardNumber] = useState(true);
-    const [sortCodeIsValid, updateSortcode] = useState(true);
-    const [CVCIsValid, updateCVC] = useState(true);
     const [expiryDate, setExpiryDate] = useState(new Date());
 
     const validateCardNumber = () => {
@@ -41,10 +39,10 @@ export default function CardDetails() {
             return [validResults, invalidResults];
         }, []);
 
-        if (results[0].length > 0) {
-            updateCardNumber(true);
+        if (!results[0].length > 0) {
+            document.getElementById('register-error').innerHTML = 'The card number is invalid';
         } else {
-            updateCardNumber(false);
+            document.getElementById('register-error').innerHTML = '';
         }
     };
 
@@ -52,10 +50,10 @@ export default function CardDetails() {
         const sortcode = document.getElementById('sortcode').value;
         const sortcodeRegex = /^\d{6}$/;
 
-        if (sortcode.match(sortcodeRegex)) {
-            updateSortcode(true);
+        if (!sortcode.match(sortcodeRegex)) {
+            document.getElementById('register-error').innerHTML = 'The sort code is invalid';
         } else {
-            updateSortcode(false);
+            document.getElementById('register-error').innerHTML = '';
         }
     };
 
@@ -63,10 +61,10 @@ export default function CardDetails() {
         const cvc = document.getElementById('cvc').value;
         const cvcRegex = /^\d{3}$/;
 
-        if (cvc.match(cvcRegex)) {
-            updateCVC(true);
+        if (!cvc.match(cvcRegex)) {
+            document.getElementById('register-error').innerHTML = 'The sort code is invalid';
         } else {
-            updateCVC(false);
+            document.getElementById('register-error').innerHTML = '';
         }
     };
 
@@ -74,36 +72,28 @@ export default function CardDetails() {
         {
             maxLength: '16',
             id: 'cardNumber',
-            errorName: 'Card Number',
             dataTestId: 'card-number-field',
             placeholder: 'Card number',
-            isValid: cardNumberIsValid,
             onChange: validateCardNumber,
         },
         {
             maxLength: '6',
             id: 'sortcode',
-            errorName: 'Sort Code',
             dataTestId: 'sort-code-field',
             placeholder: 'Sort code',
-            isValid: sortCodeIsValid,
             onChange: validateSortcode,
         },
         {
             maxLength: '3',
             id: 'cvc',
-            errorName: 'CVC',
             dataTestId: 'cvc-field',
             placeholder: 'CVC',
-            isValid: CVCIsValid,
             onChange: validateCVC,
         },
         {
-            maxLength: '3',
+            maxLength: '',
             id: 'expiry',
-            errorName: 'CVC',
-            placeholder: 'CVC',
-            isValid: CVCIsValid,
+            placeholder: '',
             onChange: validateCVC,
         },
     ];
@@ -113,42 +103,29 @@ export default function CardDetails() {
             <HeaderH4 text="Card Details" className="card-label" />
 
             <div className="card-input-column">
-                {cardDetails.map((details) => {
-                    const { errorName, id, placeholder, isValid, onChange, maxLength, dataTestId } =
-                        details;
-
-                    return (
-                        <div key={id} className="card-number-row">
-                            {id === 'expiry' ? (
-                                <DatePicker
-                                    selected={expiryDate}
-                                    dateFormat="MM/yyyy"
-                                    showMonthYearPicker
-                                    className="expiry-date-picker"
-                                    onChange={(date) => setExpiryDate(date)}
-                                />
-                            ) : (
-                                <input
-                                    id={id}
-                                    data-testid={dataTestId}
-                                    maxLength={maxLength}
-                                    className="card-input"
-                                    placeholder={placeholder}
-                                    onChange={onChange}
-                                />
-                            )}
-
-                            {isValid ? (
-                                <div className="error-message-column" />
-                            ) : (
-                                <HeaderH4
-                                    text={`${errorName} is invalid`}
-                                    className="error-message-column"
-                                />
-                            )}
-                        </div>
-                    );
-                })}
+                {cardDetails.map(({ id, placeholder, onChange, maxLength, dataTestId }) => (
+                    <div key={id} className="card-number-row">
+                        {id === 'expiry' ? (
+                            <DatePicker
+                                selected={expiryDate}
+                                dateFormat="MM/yyyy"
+                                showMonthYearPicker
+                                placeholderText="Expiry Date"
+                                className="expiry-date-picker"
+                                onChange={(date) => setExpiryDate(date)}
+                            />
+                        ) : (
+                            <input
+                                id={id}
+                                data-testid={dataTestId}
+                                maxLength={maxLength}
+                                className="card-input"
+                                placeholder={placeholder}
+                                onChange={onChange}
+                            />
+                        )}
+                    </div>
+                ))}
             </div>
         </div>
     );

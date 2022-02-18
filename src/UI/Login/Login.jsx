@@ -18,7 +18,6 @@ export default function Login() {
 
         if (body.message) {
             console.log(body.message);
-            // document.getElementById('incorrect').innerHTML = body.message;
         } else {
             localStorage.setItem('token', body.token);
             window.location = '/';

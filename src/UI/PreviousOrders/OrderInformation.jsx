@@ -1,13 +1,8 @@
 import { useState } from 'react';
 
-import { HeaderH3 } from '../ReusableComponents/Headers/Headers';
+import { HeaderH3, methodAndHeaders } from '../ReusableComponents/Headers/Headers';
 import ItemFrames from '../Menu/ItemFrames';
 import './OrderInformation.css';
-
-const methodAndHeaders = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-};
 
 const removeAllItemsFromBasket = async () => {
     const requestOptions = {
@@ -15,10 +10,7 @@ const removeAllItemsFromBasket = async () => {
         body: JSON.stringify(),
     };
 
-    const response = await fetch('/removeAllFromBasket', requestOptions);
-    const body = await response.json();
-
-    console.log(body);
+    await fetch('/removeAllFromBasket', requestOptions);
 };
 
 const addToBasket = async (item) => {
@@ -27,10 +19,7 @@ const addToBasket = async (item) => {
         body: JSON.stringify(item),
     };
 
-    const response = await fetch('/addToBasket', requestOptions);
-    const body = await response.json();
-
-    console.log(body);
+    await fetch('/addToBasket', requestOptions);
 };
 
 const addPreviousOrderToBasket = (items) => {

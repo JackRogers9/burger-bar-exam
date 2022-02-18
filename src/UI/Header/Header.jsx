@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { HeaderH3 } from '../ReusableComponents/Headers/Headers';
 import shoppingCart from '../Images/ShoppingCart.jpg';
+import logo from '../Images/logo.png';
 import './Header.css';
 
 export default function Header() {
@@ -17,9 +18,7 @@ export default function Header() {
             };
 
             const response = await fetch('/getUserDetails', requestOptions);
-            const body = await response.json();
-
-            toggleLogin(body[0]);
+            response.json((data) => toggleLogin(data[0]));
         }
     };
 
@@ -29,13 +28,21 @@ export default function Header() {
 
     return (
         <div className="header">
+            <Link to="/" className="logo-link">
+                <img src={logo} alt="Logo" className="logo" />
+            </Link>
+
             <Link to="/menu" className="header-link">
                 <HeaderH3 className="header-title" text="Menu" />
             </Link>
 
             {userLoggedIn ? (
                 <Link to="/previous-orders" className="header-link">
-                    <HeaderH3 className="header-title" text="Previous Orders" />
+                    <HeaderH3
+                        className="header-title"
+                        text="Previous Orders"
+                        dataTestId="previous-orders-link"
+                    />
                 </Link>
             ) : (
                 <Link to="/register" className="header-link">

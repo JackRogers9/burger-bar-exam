@@ -13,7 +13,7 @@
 .card-input-column {
     display: flex;
     flex-direction: column;
-    width: 75%;
+    width: 70%;
 }
 
 .card-number-row {
@@ -32,7 +32,7 @@
 }
 
 .card-input {
-    width: 50%;
+    width: 247px;
     margin-top: 10px;
     padding: 12px 20px;
     border-radius: 4px;
@@ -51,19 +51,23 @@
     border: 1px solid rgb(204, 204, 204);
 }
 
+.expiry-date-picker:focus {
+    outline: 2px solid rgb(188, 65, 35);
+}
+
 .react-datepicker__input-container {
-    width: 573px;
+    width: 288px;
     margin: 0;
 }
 
 .react-datepicker-wrapper {
-    width: 573px;
+    width: 288px;
     margin: 0;
 }
 
 @media (max-width: 500px) {
     .card-label {
-        width: 128px;
+        width: 125px;
         margin-left: 10px;
         color: rgb(255, 255, 255);
         font-family: Arial, Helvetica, sans-serif;
@@ -78,8 +82,38 @@
     }
 
     .card-input {
-        width: 75%;
+        width: 76%;
         margin-top: 10px;
+        margin-left: -3px;
+        padding: 12px 20px;
+        border-radius: 4px;
+        border: 1px solid rgb(204, 204, 204);
+    }
+
+    .react-datepicker__input-container {
+        width: 242px;
+        float: right;
+        margin: 0;
+    }
+
+    .react-datepicker-wrapper {
+        width: 242px;
+        float: right;
+        margin: 0;
+    }
+
+    .field-input-date {
+        width: 200px;
+        margin: auto;
+        padding: 12px 20px;
+        border-radius: 4px;
+        border: 1px solid rgb(204, 204, 204);
+    }
+
+    .expiry-date-picker {
+        width: 198px;
+        margin-top: 10px;
+        margin-left: -3px;
         padding: 12px 20px;
         border-radius: 4px;
         border: 1px solid rgb(204, 204, 204);

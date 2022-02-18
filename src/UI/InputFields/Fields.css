@@ -31,52 +31,10 @@
     outline: 2px solid rgb(188, 65, 35);
 }
 
-.react-datepicker__input-container {
-    width: 573px;
-    margin: 0;
-}
-
-.react-datepicker-wrapper {
-    width: 573px;
-    margin: 0;
-}
-
-.field-input-date {
-    width: 530px;
-    margin: auto;
-    padding: 12px 20px;
-    border-radius: 4px;
-    border: 1px solid rgb(204, 204, 204);
-}
-
-.field-input-date:focus {
-    outline: 2px solid rgb(188, 65, 35);
-}
-
 @media (max-width: 500px) {
     .field-input {
         width: 55%;
         margin: 0 10px 0 0;
-        padding: 12px 20px;
-        border-radius: 4px;
-        border: 1px solid rgb(204, 204, 204);
-    }
-
-    .react-datepicker__input-container {
-        width: 242px;
-        float: right;
-        margin: 0;
-    }
-
-    .react-datepicker-wrapper {
-        width: 242px;
-        float: right;
-        margin: 0;
-    }
-
-    .field-input-date {
-        width: 200px;
-        margin: auto;
         padding: 12px 20px;
         border-radius: 4px;
         border: 1px solid rgb(204, 204, 204);
